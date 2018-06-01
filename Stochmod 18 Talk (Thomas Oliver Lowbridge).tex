@@ -1,0 +1,152 @@
+\documentclass[11pt]{beamer}
+
+\usetheme{Warsaw}
+%\addtobeamertemplate{navigation symbols}{}{%
+%    \usebeamerfont{footline}%
+%    \usebeamercolor[fg]{footline}%
+%    \hspace{1em}%
+%    \insertframenumber/\inserttotalframenumber
+%}
+
+\beamertemplatenavigationsymbolsempty
+
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot} \hyperlink{Patrolling games}{\inserttitle}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\setbeamertemplate{headline}{}
+\usefonttheme[onlymath]{serif}
+
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{natbib}
+\usepackage{appendix}
+\usepackage[utf8]{inputenc}
+%\usepackage{floatrow}
+%\usepackage{newfloat}
+\usepackage{subcaption}
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{fit}
+\usetikzlibrary{shapes.misc,calc, positioning, hobby, backgrounds}
+
+\tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
+%default radius will be 1pt. 
+cross/.default={1pt}}
+
+
+%\DeclarePairedDelimiter{\floor}{\lfloor}{\rightfloor}
+%\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\newcommand{\halflength}{\ensuremath{\floor{\frac{m}{2}}}}
+\newcommand{\floor}[1]{\left \lfloor #1 \right \rfloor}
+\newcommand{\ceil}[1]{\left \lceil #1 \right \rceil}
+\newcommand{\pospart}[1]{\left( #1 \right)_{+}}
+\newcommand{\negpart}[1]{\left( #1 \right)_{-}}
+\newcommand{\set}[2]{\left\{ #1 \, | \, #2 \right\}}
+
+\newcommand{\oneline}[1]{\resizebox{\dimexpr\paperwidth - 3ex}{!}{#1}}
+
+%Text box tight style
+\tcbset{mytight/.style={hbox,left=1mm,right=1mm,top=1mm,bottom=1mm,nobeforeafter}}
+
+%\DeclareFloatingEnvironment[fileext=los,
+ %   listname={List of Example Figures},
+  %  name=Example Figure,
+   % placement=tbhp,
+    %within=section,]{examplefigure}
+
+\author{Thomas Lowbridge and David Hodge}
+\title{A Graph Patrol Problem with Locally-Observable Random Attackers}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{} 
+\institute{University Of Nottingham,UK} 
+\date{June 15, 2018} 
+%\subject{} 
+\begin{document}
+
+\hypertarget{Patrolling games}{}
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\begin{frame}
+%\tableofcontents
+%\end{frame}
+
+\begin{frame}{Outline}
+
+\begin{itemize}
+\item Literature review
+ \begin{itemize}
+ \item Introduction to Game
+  \begin{itemize}
+  \item \hyperlink{Introduction to game: Pure game}{Pure game}
+  \item \hyperlink{Introduction to game: Mixed game}{Mixed game}
+  \end{itemize}
+ \item Solved Graphs
+  \begin{itemize}
+  \item \hyperlink{Solved graphs: Hamiltonian graphs}{Hamiltonian graphs}
+  %\item \hyperlink{Solved graphs: Complete bipartite graphs}{Complete bipartite graph}
+  %\item \hyperlink{Solved graphs: Star graph}{Star graph}
+  \item \hyperlink{Solved graphs: Line graph}{Line graph}
+  \end{itemize}   
+ \end{itemize}
+\item \hyperlink{Problem with diametric strategy}{Problem with line graph strategy}
+\item \hyperlink{Correction of diametric line graph strategy}{Correction of line graph strategy}
+\item \hyperlink{Extension of correction strategy}{Extension of correction strategy}
+%\item \hyperlink{Introduction to the elongated star}{Introduction to the elongated star}
+\item \hyperlink{Future work}{Future work}
+\end{itemize}
+\end{frame}
+
+\section[]{Game with non-observed}
+\hypertarget{Introduction to game: Pure game}{}
+\begin{frame}{\insertsection}
+
+A Patrolling game with random attackers, \textcolor{purple}{$G=G(Q,\bm{X},\bm{\lambda},\bm{c})$} is made of 4 major components
+\begin{itemize}
+\item A \textcolor{purple}{Graph, $Q=(N,E)$}, made of nodes, $N$ ($|N|=n$), and a set of edges, $E$.
+\item A vector of \textcolor{purple}{attack times, $\bm{X}=(X_{1},...,X_{n})$} .
+\item A vector of \textcolor{purple}{arrival rates, $\bm{\lambda}=(\lambda_{1},...,\lambda_{n})$}.
+\item A vector of \textcolor{purple}{costs, $\bm{c}=(c_{1},...,c_{n})$}
+\end{itemize}
+
+\pause
+
+The game is played over an infinite time horizon, $\mathcal{T}={0,1,....}$
+
+A patroller's policy in the game is a walk (with waiting) on the graph,
+$$W: \mathcal{T} \rightarrow N$$
+A deterministic, stationary policy, $\pi$ is a subset of all the possible walks, we will focus on these types of policies [\textcolor{red}{DO I NEED A REASON ???}] 
+
+\end{frame}
+
+
+\end{document}
