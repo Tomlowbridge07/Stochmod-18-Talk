@@ -362,4 +362,65 @@ c_{j} \lambda_{j} \text{ for } i \neq j \\
 
 \end{frame}
 
+\begin{frame}{Developing an optimal policy}
+We know aim to develop and index on our state space, that is a fair price for visiting the node for a given state. We shall first show there is no fair price, $\omega$ for visiting in any state, $(s,v)$ with $s < B$.
+
+From this position consider the policy $\pi_{k}$ which waits $k$ time periods and then renews and follows the optimal policy, $\sigma$, with $k=0,...,B-s$.
+
+Using such a policy will get us that
+\begin{equation}
+V_{n}^{\pi_{k}}(x,v)=\omega + E[V_{n-k-1}^{\sigma}(\theta)]
+\end{equation}
+
+where $\theta$ is the state upon a visit (i.e it is the state $(1,V) \sim (1,TPo(\lambda))$.
+
+Now we will pick policy $\pi_{k+1}$ over $\pi_{k}$ (or be indifferent) if
+
+\begin{align*}
+&\lim\limits_{n \rightarrow \infty} V_{n}^{\pi_{k}} (x,v) - V_{n}^{\pi_{k+1}}(x,v) \geq 0 \\
+& \iff \lim\limits_{n \rightarrow \infty} E[V_{n-k}^{\sigma}(\theta) - V_{n-k-1}^{\sigma} (\theta)] \geq 0 \\
+& \iff g \geq 0
+\end{align*}
+Where $g$ is the long-run average cost and so we know $g \geq 0$ hence we will always wait instead of renewing.
+\end{frame}
+
+\begin{frame}{Developing an optimal policy}
+Now we will skip to the state $(B+1,v)$ and suggest again a policy $\pi_{k}$ which waits $k$ time periods before renewing and then follows some optimal policy, $\sigma$.
+
+Using such a policy will get us
+\begin{equation}
+V_{n}^{\pi_{k}}(x,v)= \omega +c \lambda k + E[V_{n-k-1}^{\sigma}(\theta)]
+\end{equation}
+
+And again we will pick a policy $\pi_{k+1}$ over $\pi_{k}$ (or be indifferent) if
+
+\begin{align*}
+&\lim\limits_{n \rightarrow \infty} V_{n}^{\pi_{k}} (\floor{B}+2,0) - V_{n}^{\pi_{k+1}}(\floor{B}+2,0) \geq 0 \\
+& \iff \lim\limits_{n \rightarrow \infty} -c \lambda + E[V_{n-k}^{\sigma}(\theta) - V_{n-k-1}^{\sigma}(\theta)] \geq 0 \\
+& \iff g \geq c \lambda
+\end{align*}
+
+So hence if $g \geq c \lambda$ we will wait forever, as this has no dependence on $k$.
+
+We will now argue that $g_{max}=c \lambda$, that is at worst the  long-run average cost is $c \lambda$. This can be seen by the strategy $\pi_{\text{neg}}$, a strategy which never renews no matter what state we are in. I.e the patroller neglects the node. As for large $n$ we just pay $c \lambda$ every time step. Hence in these states if we renew we will renew immediately.
+\end{frame}
+
+\begin{frame}{Developing an optimal policy}
+Our neglecting strategy shows that $g \leq c \lambda$ and hence if we are in state $(B,v)$, we can decide to renew now or renew in one time period (at $(B+1,v)$) then follow the optimal, $\sigma$
+
+we will choice to renew now over waiting if
+
+\begin{align*}
+&\lim\limits_{n \rightarrow \infty} V_{n}^{\pi_{1}} (B,v) - V_{n}^{\pi_{0}}(B,v) \geq 0 \\
+& \iff \lim\limits_{n \rightarrow \infty} c \lambda R + vc + E[V_{n-1}^{\sigma}(B+1,0)] - (\omega + E[V_{n-1}^{\sigma}(\theta)]) \geq 0 \\
+& \iff \lim\limits_{n \rightarrow \infty} c \lambda R + v c  + E[ \omega + V_{n-2}^{\sigma}(\theta)] - \omega - E[V_{n-1}^{\sigma}(\theta)] \geq 0 \\
+& \iff \lim\limits_{n \rightarrow \infty} c(\lambda R + v) + E[V_{n-2}^{\sigma}(\theta) - V_{n-1}^{\sigma}(\theta)] \geq 0 \\
+& \iff (\lambda R+v)c - g \geq 0 \\
+& \iff g \leq c (\lambda R +v) 
+\end{align*}
+
+So we renew now if $g \leq c (\lambda R +v)$, as we are guaranteed that $g \leq c \lambda$ we are clearly in this region if $ c (\lambda R +v) \leq c \lambda \iff v \leq \lambda (1-R)$. We also note that the bound is increasing in $v$ so if we will renew in $v$ we definitely renew in $v+1,v+2,...,b$.
+
+\end{frame}
+
 \end{document}
