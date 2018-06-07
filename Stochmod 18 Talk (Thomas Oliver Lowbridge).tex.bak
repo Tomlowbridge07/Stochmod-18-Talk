@@ -84,8 +84,12 @@ cross/.default={1pt}}
 
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 
+\bibliographystyle{plain}
+
 %Text box tight style
 \tcbset{mytight/.style={hbox,left=1mm,right=1mm,top=1mm,bottom=1mm,nobeforeafter}}
+
+
 
 %\DeclareFloatingEnvironment[fileext=los,
  %   listname={List of Example Figures},
@@ -156,6 +160,124 @@ $$W: \mathcal{T} \rightarrow N .$$
 With the patroller moving instantaneously between nodes and attackers who arrive when the patroller is present waiting till the next time period to attack(who are observed as suspicious by the patroller).
 \end{frame}
 
+\begin{frame}{Example of Game}
+\begin{myfigure}[H]
+\begin{center}
+\begin{tikzpicture}[-,auto,node distance=2cm,
+                    thick,main node/.style={circle,fill=white,draw,font=\sffamily\Large\bfseries}]
+
+%DRAWING GRAPH
+  \node[main node] (1) {$1$};
+  \node[main node] (2) [right of=1] {$2$};
+  \node[main node,fill=blue!30] (3) [below of=1]  {$3$};
+  \node[main node] (4) [below of=2]  {$4$};
+
+  \path[every node/.style={font=\sffamily}]
+    (1) edge (2)
+        edge (3)
+        edge (4)
+    (2) edge (3)
+        edge (4)
+    (3) edge (4);
+  
+  
+%DRAWING ARRIVALS  
+  \node (1ArrowStart) [shift={(-4,0)}] at (1) {};
+  \draw[->] (1ArrowStart)--(1);
+  
+  \node[cross=5pt,color=red] (1Cross1) [shift={(-3,0)}] at (1) { };
+  \node (1CrossEnd1) [shift={(-1.5,0)}] at (1) {};
+  \draw[->,bend left,dashed,color=red] (1Cross1) to (1CrossEnd1);
+  \node[cross=5pt,color=red] (1Cross2) [shift={(-2.2,0)}] at (1) { };
+  \node (1CrossEnd2) [shift={(-0.5,0)}] at (1) {};
+  \draw[->,bend left,dashed,color=red] (1Cross2) to (1CrossEnd2);
+  
+  \node (2ArrowStart) [shift={(4,0)}] at (2) {};
+  \draw[->] (2ArrowStart)--(2);
+  
+  \node[cross=5pt,color=red] (2Cross1) [shift={(3,0)}] at (2) { };
+  \node (2CrossEnd1) [shift={(1,0)}] at (2) {};
+  \draw[->,bend right,dashed,color=red] (2Cross1) to (2CrossEnd1);
+
+  \node (3ArrowStart) [shift={(-4,0)}] at (3) {};
+  \draw[->] (3ArrowStart)--(3);
+  
+  \node[cross=5pt,color=red] (3Cross1) [shift={(-2,0)}] at (3) { };
+  \node (3CrossEnd1) [shift={(-1.5,0)}] at (3) {};
+  \draw[->,bend left,dashed,color=red] (3Cross1) to (3CrossEnd1);
+  \node[cross=5pt,color=red] (3Cross1) [shift={(-1,0)}] at (3) { };
+  
+  \node (4ArrowStart) [shift={(4,0)}] at (4) {};
+  \draw[->] (4ArrowStart)--(4);
+  
+  \node[cross=5pt,color=red] (4Cross1) [shift={(2,0)}] at (4) { };
+  \node (4CrossEnd1) [shift={(1.2,0)}] at (4) {};
+  \draw[->,bend right,dashed,color=red] (4Cross1) to (4CrossEnd1);
+  
+%Drawing Observable capacity boxes
+ \node (1LowerLeft) [shift={(-0.4,0.6)}] at (1) { };
+ \node (1LowerRight) [shift={(0.4,0.6)}] at (1) { };
+ \node (1UpperLeft) [shift={(-0.4,1.6)}] at (1) { };
+ \node (1UpperRight) [shift={(0.4,1.6)}] at (1) { }; 
+ 
+ \draw[-] (1LowerLeft.center)--(1LowerRight.center)--(1UpperRight.center)
+ --(1UpperLeft.center)--(1LowerLeft.center);
+ 
+ \node (1FillPointLeft1) [shift={(0,0.25)}] at (1LowerLeft) { };
+ \node (1FillPointRight1) [shift={(0,0.25)}] at (1LowerRight) { };
+ \node (1FillPointLeft2) [shift={(0,0.5)}] at (1LowerLeft) { };
+ \node (1FillPointRight2) [shift={(0,0.5)}] at (1LowerRight) { };
+ \node (1FillPointLeft3) [shift={(0,0.75)}] at (1LowerLeft) { };
+ \node (1FillPointRight3) [shift={(0,0.75)}] at (1LowerRight) { };
+
+ \filldraw[fill=red!40!white, draw=black] (1LowerLeft) rectangle (1FillPointRight3);
+ 
+ \draw[-] (1FillPointLeft1.center)--(1FillPointRight1.center);
+ \draw[-] (1FillPointLeft2.center)--(1FillPointRight2.center);
+ \draw[-] (1FillPointLeft3.center)--(1FillPointRight3.center);
+ 
+ 
+ 
+ \node (2LowerLeft) [shift={(-0.4,0.6)}] at (2) { };
+ \node (2LowerRight) [shift={(0.4,0.6)}] at (2) { };
+ \node (2UpperLeft) [shift={(-0.4,1.1)}] at (2) { };
+ \node (2UpperRight) [shift={(0.4,1.1)}] at (2) { }; 
+ 
+ \draw[-] (2LowerLeft.center)--(2LowerRight.center)--(2UpperRight.center)
+ --(2UpperLeft.center)--(2LowerLeft.center);
+ 
+ \node (2FillPointLeft1) [shift={(0,0.25)}] at (2LowerLeft) { };
+ \node (2FillPointRight1) [shift={(0,0.25)}] at (2LowerRight) { };
+
+ \filldraw[fill=red!40!white, draw=black] (2LowerLeft) rectangle (2FillPointRight1);
+ 
+ \draw[-] (1FillPointLeft1.center)--(1FillPointRight1.center);
+ 
+ 
+ \node (3LowerLeft) [shift={(-0.4,-0.6)}] at (3) { };
+ \node (3LowerRight) [shift={(0.4,-0.6)}] at (3) { };
+ \node (3UpperLeft) [shift={(-0.4,-1.35)}] at (3) { };
+ \node (3UpperRight) [shift={(0.4,-1.35)}] at (3) { }; 
+ 
+ \draw[-] (3LowerLeft.center)--(3LowerRight.center)--(3UpperRight.center)
+ --(3UpperLeft.center)--(3LowerLeft.center);
+ 
+ \node (3FillPointLeft1) [shift={(0,-0.25)}] at (3LowerLeft) { };
+ \node (3FillPointRight1) [shift={(0,-0.25)}] at (3LowerRight) { };
+ \node (3FillPointLeft2) [shift={(0,-0.5)}] at (3LowerLeft) { };
+ \node (3FillPointRight2) [shift={(0,-0.5)}] at (3LowerRight) { };
+
+ 
+ \draw[-] (3FillPointLeft1.center)--(3FillPointRight1.center);
+ \draw[-] (3FillPointLeft2.center)--(3FillPointRight2.center);
+    
+\end{tikzpicture}
+\end{center}
+\caption{Example of $G=(K_{4},\bm{X},\bm{b},\bm{\lambda},\bm{c})$ with patroller currently at node $3$}
+\end{myfigure}
+
+\end{frame}
+
 \begin{frame}{Markov Decision Process(MDP) formulation}
 This game is a MDP with states $(\bm{s},\bm{v})$, where $s_{i}$ is the time since node $i$ was last chosen to be visited and $v_{i}$ is how many local-observations where observed when node $i$ was last visited. With state space $\Omega=\{(\bm{s},\bm{v}) | s_{i}=1,2,.... \, \text{and}  \, v_{i}=0,1,....,b_{i} \, \forall i=1,...,n  \}$.
 
@@ -184,12 +306,12 @@ To avoid certain problems, we would like to limit ourselves to a finite state sp
 
 \
 
-Like in [Insert reference to paper], we will bound the attack times to create a finite state space, and define \textcolor{red}{$B_{j} \equiv \min \{ k | k \in \mathbb{Z}^{+} , P(X_{j} \leq k)=1 \}$}. We will also bound our observable capacities to finite integers \textcolor{red}{$b_{i} \in \mathbb{Z}^{+}_{0}$}.This restricts our state space to a finite size
+As in \citep{Lin2013}, we will bound the attack times to create a finite state space, and define \textcolor{purple}{$B_{j} \equiv \min \{ k | k \in \mathbb{Z}^{+} , P(X_{j} \leq k)=1 \}$}. We will also bound our observable capacities to finite integers \textcolor{red}{$b_{i} \in \mathbb{Z}^{+}_{0}$}.This restricts our state space to a finite size
 $\Omega=\{(\bm{s},\bm{v}) | s_{i}=1,2,....,B_{i}+1 \, \text{and}  \, v_{i}=0,1,....,b_{i} \, \forall i=1,...,n  \}$.
 
 \
 
-Now however our transistions are limited and become $\phi(\bm{s},\bm{v},i)=(\widetilde{\bm{s}},\widetilde{\bm{v}})$ where $\widetilde{s}$ has; $\widetilde{s}_{i}=1$ and \textcolor{red}{$\widetilde{s}_{j}=\min \{s_{j}+1,B_{j}+1 \} \forall j \neq i$} and $\widetilde{v}$ has; $\widetilde{v}_{i} \sim TPo(\lambda_{i},b_{i})$ and  $\widetilde{v}_{j}=v_{i} \forall j \neq i$.
+Now however our transistions are limited and become $\phi(\bm{s},\bm{v},i)=(\widetilde{\bm{s}},\widetilde{\bm{v}})$ where $\widetilde{s}$ has; $\widetilde{s}_{i}=1$ and \textcolor{purple}{$\widetilde{s}_{j}=\min \{s_{j}+1,B_{j}+1 \} \forall j \neq i$} and $\widetilde{v}$ has; $\widetilde{v}_{i} \sim TPo(\lambda_{i},b_{i})$ and  $\widetilde{v}_{j}=v_{i} \forall j \neq i$.
 
 \end{frame}
 
@@ -262,7 +384,36 @@ $$C_{j}(\bm{s},\bm{v},i)=\begin{cases}
 Due to the finiteness of the state space, we can just focus on stationary, deterministic policies, $\pi: \Omega \rightarrow \mathcal{A} \in \Pi$, instead of all walks, $\mathcal{W}$.
 \end{frame}
 
-\begin{frame}{Markov Decision Process(MDP) formulation}
+\begin{frame}{Deterministic attack times}
+We will now assume the attack times are deterministic, to make the cost function easier to handle.
+
+When we use $P(X_{j}=x_{j})=1$ we get a cost function of.
+
+For $s_{j} < B_{j}$
+\begin{align*}
+C_{j}(\bm{s},\bm{v},i)=0
+\end{align*}
+
+For $s_{j}=B_{j}$
+\begin{align*}
+C_{j}(\bm{s},\bm{v},i)= \begin{cases}
+c_{j} \lambda_{j} R_{j} + c_{j} v_{j}  \text{ for } i \neq j \\ 
+0 \text{ for } i=j \\
+\end{cases}  
+\end{align*}
+Where $R_{j}=B_{j}-x_{j}$
+
+For $s_{j}=B_{j}+1$
+\begin{align*}
+C_{j}(\bm{s},\bm{v},i)= \begin{cases}
+c_{j} \lambda_{j} \text{ for } i \neq j \\
+0 \text{ for } i=j \\
+\end{cases}
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{Objective}
 The patroller wants to choose a policy such that the long-run average cost is minimized, that is find the minimum cost (and policy) defined by,
 
 \begin{align*}
@@ -291,6 +442,7 @@ Where $\alpha_{i}=1$ if the patroller will visit node $i$ in the next time perio
 Note. $\Pi \subset \Pi^{\text{MN}}$.
 \end{frame}
 
+
 \begin{frame}{Total-rate constraint}
 \begin{definition}[Long-run visit rate]
 Define the long-run rate of visits to node $i$, starting at $(\bm{s}_{0},\bm{v}_{0})$ under policy $\pi$ by
@@ -317,122 +469,45 @@ C(\omega)&=\min_{\pi \in \Pi^{\text{MN}}} \left\{ \sum\limits_{i=1}^{n} V_{i}(\p
 \end{align*}
 
 By incorporating the total-rate constraint as a Lagrange multiplier we can drop the constraint, so that the patroller can choose to visit any number of nodes in each time period (each costing $\omega$).
+
+We can show that, $C^{\text{OPT}} \geq C^{\text{TR}} \geq C(\omega)$.
 \end{frame}
 
-\begin{frame}{Linking reduced problems}
-We have that for any $\omega \geq 0$
-
-\begin{align*}
-C^{\text{TR}}=\min_{\pi \in \Pi^{\text{TR}}} \sum\limits_{i=1}^{n} V_{i}(\pi) &\geq \min_{\pi \in \Pi^{\text{TR}}} \left\{ \sum\limits_{i=1}^{n} V_{i}(\pi) + \omega \left( \sum\limits_{i=0}^{n} \mu_{i}(\pi) -1 \right) \right\} \\
-&\geq \min_{\pi \in \Pi^{\text{MN}}} \left\{ \sum\limits_{i=1}^{n} V_{i}(\pi) + \omega \left( \sum\limits_{i=0}^{n} \mu_{i}(\pi) -1 \right) \right\}=C(\omega)
-\end{align*}
-
-The first inequality follows as the total-rate constraint is obeyed in $\Pi^{\text{TR}}$ and hence the $\omega \left( \sum\limits_{i=0}^{n} \mu_{i}(\pi) -1 \right) \leq 0$ and the second holds, as $\Pi^{\text{TR}} \subset \Pi^{\text{MN}}$, so we can only do better and hence possibly get a lower value.
-
-Hence we have a string of inequalities $C^{\text{OPT}} \geq C^{\text{TR}} \geq C(\omega)$.
-\end{frame}
+%\begin{frame}{Linking reduced problems}
+%We have that for any $\omega \geq 0$
+%
+%\begin{align*}
+%C^{\text{TR}}=\min_{\pi \in \Pi^{\text{TR}}} \sum\limits_{i=1}^{n} V_{i}(\pi) &\geq \min_{\pi \in \Pi^{\text{TR}}} \left\{ \sum\limits_{i=1}^{n} V_{i}(\pi) + \omega \left( \sum\limits_{i=0}^{n} \mu_{i}(\pi) -1 \right) \right\} \\
+%&\geq \min_{\pi \in \Pi^{\text{MN}}} \left\{ \sum\limits_{i=1}^{n} V_{i}(\pi) + \omega \left( \sum\limits_{i=0}^{n} \mu_{i}(\pi) -1 \right) \right\}=C(\omega)
+%\end{align*}
+%
+%The first inequality follows as the total-rate constraint is obeyed in $\Pi^{\text{TR}}$ and hence the $\omega \left( \sum\limits_{i=0}^{n} \mu_{i}(\pi) -1 \right) \leq 0$ and the second holds, as $\Pi^{\text{TR}} \subset \Pi^{\text{MN}}$.
+%
+%\
+%
+%Hence we have a string of inequalities $C^{\text{OPT}} \geq C^{\text{TR}} \geq C(\omega)$.
+%\end{frame}
 
 \begin{frame}{Single node problem}
-We now want to find $C(\omega)=\min_{\pi \in \Pi^{\text{MN}}} \sum\limits_{i=1}^{n} (V_{i}(\pi)+\omega \mu_{i}(\pi)) - \omega$ and we can split this problem up to just solve at each node.
+We now want to find $C(\omega)=\min\limits_{\pi \in \Pi^{\text{MN}}} \sum\limits_{i=1}^{n} (V_{i}(\pi)+\omega \mu_{i}(\pi)) - \omega$. This problem, as we are in the multi-node class, can be rewrote as
 
-That is consider a every node, $i$, try to minimize $V_{i}(\pi)+\omega \mu_{i}(\pi)$, where $\omega$ can be interpreted as the service charge for visiting.
+\begin{align*}
+C(\omega)=\sum\limits_{i=1}^{n} \min\limits_{\pi \in \Pi^{\text{MN}}} (V_{i}(\pi)+\omega \mu_{i}(\pi)) - \omega
+\end{align*}
 
-For now we drop the node subscript and just try to find the following
+
+That is for every node, $i$, try to minimize $V_{i}(\pi)+\omega \mu_{i}(\pi)$, where $\omega$ can be interpreted as the service charge for visiting the node.For now we drop the node subscript and just try to find the following,
 
 \begin{align*}
 \min_{\pi \in \Pi^{\text{MN}}} V(\pi) + \omega \mu(\pi)
 \end{align*}
 
-\end{frame}
-
-\begin{frame}{Deterministic attack times}
-Before looking at solving the single node problem, we will assume the attack times are deterministic, to make the cost function easier to handle.
-
-When we use $X_{j}=x_{j}$ we get a cost function of.
-
-For $s_{j} < B_{j}$
-\begin{align*}
-C_{j}(\bm{s},\bm{v},i)=0
-\end{align*}
-
-For $s_{j}=B_{j}$
-\begin{align*}
-C_{j}(\bm{s},\bm{v},i)= \begin{cases}
-c_{j} \lambda_{j} R_{j} + c_{j} v_{j}  \text{ for } i \neq j \\
-0 \text{ for } i=j \\
-\end{cases}  
-\end{align*}
-
-For $s_{j}=B_{j}+1$
-\begin{align*}
-C_{j}(\bm{s},\bm{v},i)= \begin{cases}
-c_{j} \lambda_{j} \text{ for } i \neq j \\
-0 \text{ for } i=j \\
-\end{cases}
-\end{align*}
-
-\end{frame}
-
-\begin{frame}{Developing an optimal policy}
-We know aim to develop and index on our state space, that is a fair price for visiting the node for a given state. We shall first show there is no fair price, $\omega$ for visiting in any state, $(s,v)$ with $s < B$.
-
-From this position consider the policy $\pi_{k}$ which waits $k$ time periods and then renews and follows the optimal policy, $\sigma$, with $k=0,...,B-s$.
-
-Using such a policy will get us that
-\begin{equation}
-V_{n}^{\pi_{k}}(x,v)=\omega + E[V_{n-k-1}^{\sigma}(\theta)]
-\end{equation}
-
-where $\theta$ is the state upon a visit (i.e it is the state $(1,V) \sim (1,TPo(\lambda))$.
-
-Now we will pick policy $\pi_{k+1}$ over $\pi_{k}$ (or be indifferent) if
-
-\begin{align*}
-&\lim\limits_{n \rightarrow \infty} V_{n}^{\pi_{k}} (x,v) - V_{n}^{\pi_{k+1}}(x,v) \geq 0 \\
-& \iff \lim\limits_{n \rightarrow \infty} E[V_{n-k}^{\sigma}(\theta) - V_{n-k-1}^{\sigma} (\theta)] \geq 0 \\
-& \iff g \geq 0
-\end{align*}
-Where $g$ is the long-run average cost and so we know $g \geq 0$ hence we will always wait instead of renewing.
-\end{frame}
-
-\begin{frame}{Developing an optimal policy}
-Now we will skip to the state $(B+1,v)$ and suggest again a policy $\pi_{k}$ which waits $k$ time periods before renewing and then follows some optimal policy, $\sigma$.
-
-Using such a policy will get us
-\begin{equation}
-V_{n}^{\pi_{k}}(x,v)= \omega +c \lambda k + E[V_{n-k-1}^{\sigma}(\theta)]
-\end{equation}
-
-And again we will pick a policy $\pi_{k+1}$ over $\pi_{k}$ (or be indifferent) if
-
-\begin{align*}
-&\lim\limits_{n \rightarrow \infty} V_{n}^{\pi_{k}} (\floor{B}+2,0) - V_{n}^{\pi_{k+1}}(\floor{B}+2,0) \geq 0 \\
-& \iff \lim\limits_{n \rightarrow \infty} -c \lambda + E[V_{n-k}^{\sigma}(\theta) - V_{n-k-1}^{\sigma}(\theta)] \geq 0 \\
-& \iff g \geq c \lambda
-\end{align*}
-
-So hence if $g \geq c \lambda$ we will wait forever, as this has no dependence on $k$.
-
-We will now argue that $g_{\text{max}}=c \lambda$, that is at worst the  long-run average cost is $c \lambda$. This can be seen by the strategy $\pi_{\text{neg}}$, a strategy which never renews no matter what state we are in. I.e the patroller neglects the node. As for large $n$ we just pay $c \lambda$ every time step. Hence in these states if we renew we will renew immediately.
-\end{frame}
-
-\begin{frame}{Developing an optimal policy}
-Our neglecting strategy shows that $g \leq c \lambda$ and hence if we are in state $(B,v)$, we can decide to renew now or renew in one time period (at $(B+1,v)$) then follow the optimal, $\sigma$
-
-we will choice to renew now over waiting if
-
-\begin{align*}
-&\lim\limits_{n \rightarrow \infty} V_{n}^{\pi_{1}} (B,v) - V_{n}^{\pi_{0}}(B,v) \geq 0 \\
-& \iff \lim\limits_{n \rightarrow \infty} c \lambda R + vc + E[V_{n-1}^{\sigma}(B+1,0)] - (\omega + E[V_{n-1}^{\sigma}(\theta)]) \geq 0 \\
-& \iff g \leq c (\lambda R +v) 
-\end{align*}
-
-So we renew now if $g \leq c (\lambda R +v)$, as we are guaranteed that $g \leq c \lambda$ we are clearly in this region if $ c (\lambda R +v) \leq c \lambda \iff v \leq \lambda (1-R)$. We also note that the bound is increasing in $v$ so if we will renew in $v$ we definitely renew in $v+1,v+2,...,b$.
+We solve the single node problem, finding that $g \leq c \lambda$ by never visiting the node. We also find that depending on $g \leq c (\lambda R + v)$ we will renew or not when we are about to incur costs.
 
 \end{frame}
 
 \begin{frame}{Developing a Threshold policy}
-
+This motivates a threshold policy as defined.
 \begin{definition}[Threshold Policy]
 Policy, $\pi_{\text{Th}}(v_{\text{crit}})$, is the policy which in states:
 \begin{itemize}
@@ -442,7 +517,7 @@ Policy, $\pi_{\text{Th}}(v_{\text{crit}})$, is the policy which in states:
 \end{itemize}
 \end{definition}
 
-We notice that as we need $g \leq c(\lambda R + v)$ to renew now there is some maximum choice for this threshold, $v_{\text{max}} \equiv \max \{ v \in \{0,1,...,b \} \, | \, v \leq \lambda (1-R) \} $, so $v_{\text{crit}} \in \{0,1,...,v_{\text{max}}+1 \}$.
+As $g \leq c(\lambda R + v)$ there is some maximum choice for this threshold, $v_{\text{max}} \equiv \max \{ v \in \{0,1,...,b \} \, | \, v \leq \lambda (1-R) \} $, so $v_{\text{crit}} \in \{0,1,...,v_{\text{max}}+1 \}$.
 
 We get bounds on the long-run average cost
 \begin{itemize}
@@ -563,6 +638,54 @@ W_{i}(s_{i},v_{i})&=\begin{cases}
 \end{definition}
 \end{frame}
 
+\begin{frame}{Example of node index}
+\begin{myfigure}[H]
+\begin{center}
+\resizebox{0.7\linewidth}{!}{
+\begin{tikzpicture}[-,auto,node distance=1cm,
+                    thick,main node/.style={circle,fill=white,draw,font=\sffamily\large,minimum size=0.5cm}]
+ \foreach \x in {0,...,5}
+    \foreach \y in {0,...,4} 
+       {\pgfmathtruncatemacro{\label}{\x - 5 *  \y +21}
+        \pgfmathtruncatemacro{\v}{\x}
+        \pgfmathtruncatemacro{\s}{5-\y}
+       \node [main node]  (\x\y) at (1.5*\x,1.5*\y) {0};}
+       
+       \node[main node] (01) at (01) {$\Delta_{j}(0)$};
+       \node[main node] (11) at (11) {$\Delta_{j}(1)$};
+  
+  \foreach \x in {2,...,5}
+  { \node[main node] (\x1) at (\x1) {$\widetilde{\Delta}_{j}$};}
+
+  \foreach \x in {0,...,5}
+  { \node[main node] (\x0) at (\x0) {$\widetilde{\Delta}_{j}$};}  
+       
+       
+       
+        
+
+\node (XaxisLeft) [shift={(-0.5,0.5)}] at (05) {};
+\node (XaxisRight) [shift={(1,0.5)}] at (55) {};
+
+\node (YaxisBottom) [shift={(-1,-0.5)}] at (00) {};
+\node (YaxisTop) [shift={(-1,1)}] at (05) {};
+
+\draw[->,line width=1mm] (XaxisLeft)--(XaxisRight);
+\draw[->,line width=1mm] (YaxisTop)--(YaxisBottom);
+
+\node[font=\sffamily\large] (OLabel) [shift={(0.5,1)}] at (25) {Observation, $v_{j}$};
+\node[font=\sffamily\large] (SLabel) [shift={(-1.5,0.5)}] at (02) {\rotatebox{90}{Time since last visit, $s_{j}$}};
+
+\node[main node] (Example) [shift={(-1,0.5)}] at (05) {$(s_{j},v_{j})$};
+   
+
+\end{tikzpicture}
+}
+\end{center}
+\caption{Index value for states}
+\end{myfigure}
+\end{frame}
+
 \begin{frame}{Heuristic types}
 \begin{definition}[Benefit Heuristic(BH)]
 The benefit heuristic(BH) has a patroller currently in state $(\bm{s},\bm{v})$ look at all paths of length, $l$. They choose the path with the largest aggregate of indices collected along the path. The action is the first node in the path.
@@ -584,19 +707,282 @@ We will call the depth heuristics, BH($d$) and PH($d$).
 \end{frame}
 
 \begin{frame}{Numerical Experiments}
-v
+
+\begin{myfigure}[H]
+\begin{center}
+\resizebox{\linewidth}{!}{
+\input{Images/OldPlainPenaltyHeuristicOnComplete.tex}
+}
+\end{center}
+\caption{Percentage Error frequency for PH of depths $1,2,3$}
+\end{myfigure}
+
 \end{frame}
 
+\begin{frame}{Suggestion of node index fix}
+\begin{myfigure}[H]
+\begin{center}
+\resizebox{0.7\linewidth}{!}{
+\begin{tikzpicture}[-,auto,node distance=1cm,
+                    thick,main node/.style={circle,fill=white,draw,font=\sffamily\large,minimum size=0.5cm}]
+ \foreach \x in {0,...,5}
+    \foreach \y in {0,...,4} 
+       {\pgfmathtruncatemacro{\label}{\x - 5 *  \y +21}
+        \pgfmathtruncatemacro{\v}{\x}
+        \pgfmathtruncatemacro{\s}{5-\y}
+       \node [main node]  (\x\y) at (1.5*\x,1.5*\y) {0};}
+       
+  
+  \foreach \x in {0,...,5}
+  {        \pgfmathtruncatemacro{\v}{\x} 
+  \node[main node] (\x1) at (\x1) {$\Delta_{j}(\v)$};}
 
-\begin{frame}{Conclusion}
-v
+  \foreach \x in {0,...,1}
+  { \pgfmathtruncatemacro{\v}{\x+1} 
+  \node[main node] (\x0) at (\x0) {$\Delta_{j}(\v)$};}
+  
+  \foreach \x in {2,...,5}
+  { 
+  \node[main node] (\x0) at (\x0) {$\widetilde{\Delta}_{j}$};}   
+       
+       
+       
+        
+
+\node (XaxisLeft) [shift={(-0.5,0.5)}] at (05) {};
+\node (XaxisRight) [shift={(1,0.5)}] at (55) {};
+
+\node (YaxisBottom) [shift={(-1,-0.5)}] at (00) {};
+\node (YaxisTop) [shift={(-1,1)}] at (05) {};
+
+\draw[->,line width=1mm] (XaxisLeft)--(XaxisRight);
+\draw[->,line width=1mm] (YaxisTop)--(YaxisBottom);
+
+\node[font=\sffamily\large] (OLabel) [shift={(0.5,1)}] at (25) {Observation, $v_{j}$};
+\node[font=\sffamily\large] (SLabel) [shift={(-1.5,0.5)}] at (02) {\rotatebox{90}{Time since last visit, $s_{j}$}};
+
+\node[main node] (Example) [shift={(-1,0.5)}] at (05) {$(s_{j},v_{j})$};
+   
+
+\end{tikzpicture}
+}
+\end{center}
+\caption{New suggested index value for states}
+\end{myfigure}
+\end{frame}
+
+\begin{frame}{Comparing indices}
+
+\begin{myfigure}[H]
+\begin{center}
+\resizebox{\linewidth}{!}{
+\input{Images/ComparePlainPenaltyHeuristicOnComplete.tex}
+}
+\end{center}
+\caption{Percentage Error frequency for PH of depth $3$ for old and new index}
+\end{myfigure}
+
 \end{frame}
 
 \begin{frame}{Future work}
-v
+\begin{itemize}
+\item Recode heuristic for each look-ahead window, $l$, to find the cycles and therefore average. This will make sure the heuristics are weakly improving in $d$.
+\item Look at how to pick a heuristic type dependent on graphical structure
+\item Improve theory to deal with generic distributions
+\end{itemize}
 \end{frame}
 
+\begin{frame}
+\bibliography{mybib}
+\end{frame}
+
+
+\appendix
+
 \begin{frame}[plain,noframenumbering]
+
+\begin{center}
+\Huge Appendix: Developing the optimal policy
+\end{center}
+
+\end{frame}
+
+\section{Developing an optimal policy}
+\begin{frame}[plain,noframenumbering]{Developing an optimal policy}
+We aim to develop and index on our state space, that is a fair price for visiting the node for a given state. We shall first show there is no fair price, $\omega$ for visiting in any state, $(s,v)$ with $s < B$.
+
+From this position consider the policy $\pi_{k}$ which waits $k$ time periods and then renews and follows the optimal policy, $\sigma$, with $k=0,...,B-s$.
+
+Using such a policy will get us that
+\begin{equation}
+V_{n}^{\pi_{k}}(x,v)=\omega + E[V_{n-k-1}^{\sigma}(\theta)]
+\end{equation}
+
+where $\theta$ is the state upon a visit (i.e it is the state $(1,V) \sim (1,TPo(\lambda))$.
+
+Now we will pick policy $\pi_{k+1}$ over $\pi_{k}$ (or be indifferent) if
+
+\begin{align*}
+&\lim\limits_{n \rightarrow \infty} V_{n}^{\pi_{k}} (x,v) - V_{n}^{\pi_{k+1}}(x,v) \geq 0 \\
+& \iff \lim\limits_{n \rightarrow \infty} E[V_{n-k}^{\sigma}(\theta) - V_{n-k-1}^{\sigma} (\theta)] \geq 0 \\
+& \iff g \geq 0
+\end{align*}
+Where $g$ is the long-run average cost and so we know $g \geq 0$ hence we will always wait instead of renewing.
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]{Developing and optimal policy}
+\begin{myfigure}[H]
+\begin{center}
+\resizebox{0.7\linewidth}{!}{
+\begin{tikzpicture}[-,auto,node distance=1cm,
+                    thick,main node/.style={circle,fill=white,draw,font=\sffamily\large,minimum size=0.5cm}]
+ \foreach \x in {0,...,5}
+    \foreach \y in {0,...,4} 
+       {\pgfmathtruncatemacro{\label}{\x - 5 *  \y +21}
+        \pgfmathtruncatemacro{\v}{\x}
+        \pgfmathtruncatemacro{\s}{5-\y}
+       \node [main node]  (\x\y) at (1.5*\x,1.5*\y) {\s,\v};}
+       
+       \node[main node] (Renewal) at (1.5*6,1.5*4) {$\theta$};
+
+
+       
+  \foreach \x in {0,...,5}
+    \foreach \y in {2,...,4} 
+       {\pgfmathtruncatemacro{\label}{\x - 5 *  \y +21}
+        \pgfmathtruncatemacro{\v}{\x}
+        \pgfmathtruncatemacro{\s}{5-\y}
+        \pgfmathtruncatemacro{\nv}{\v}
+        \pgfmathtruncatemacro{\ns}{5-\y+1}
+       \draw[->] (\nv\ns)--(\v\s);}
+       
+       
+    \foreach \x in {0,...,5}
+    { 
+     \draw[->,bend right,dashed] (Renewal) to (\x4);    
+    }   
+        
+
+\node (XaxisLeft) [shift={(-0.5,0.5)}] at (05) {};
+\node (XaxisRight) [shift={(1,0.5)}] at (55) {};
+
+\node (YaxisBottom) [shift={(-1,-0.5)}] at (00) {};
+\node (YaxisTop) [shift={(-1,1)}] at (05) {};
+
+\draw[->,line width=1mm] (XaxisLeft)--(XaxisRight);
+\draw[->,line width=1mm] (YaxisTop)--(YaxisBottom);
+
+\node[font=\sffamily\large] (OLabel) [shift={(0.5,1)}] at (25) {Observation, $v_{j}$};
+\node[font=\sffamily\large] (SLabel) [shift={(-1.5,0.5)}] at (02) {\rotatebox{90}{Time since last visit, $s_{j}$}};
+
+\node[main node] (Example) [shift={(-1,0.5)}] at (05) {$(s_{j},v_{j})$};
+   
+
+\end{tikzpicture}
+}
+\end{center}
+\caption{Threshold policy, $\pi_{\text{Th}}(2)$, with \textcolor{blue}{$b_{j}=5$} and \textcolor{red}{$B_{j}=4$} (e.g. $X_{j} \leq 3.7$)}
+\end{myfigure}
+\end{frame}
+
+
+\begin{frame}[plain,noframenumbering]{Developing an optimal policy}
+Now we will skip to the state $(B+1,v)$ and suggest again a policy $\pi_{k}$ which waits $k$ time periods before renewing and then follows some optimal policy, $\sigma$.
+
+Using such a policy will get us
+\begin{equation}
+V_{n}^{\pi_{k}}(x,v)= \omega +c \lambda k + E[V_{n-k-1}^{\sigma}(\theta)]
+\end{equation}
+
+And again we will pick a policy $\pi_{k+1}$ over $\pi_{k}$ (or be indifferent) if
+
+\begin{align*}
+&\lim\limits_{n \rightarrow \infty} V_{n}^{\pi_{k}} (\floor{B}+2,0) - V_{n}^{\pi_{k+1}}(\floor{B}+2,0) \geq 0 \\
+& \iff \lim\limits_{n \rightarrow \infty} -c \lambda + E[V_{n-k}^{\sigma}(\theta) - V_{n-k-1}^{\sigma}(\theta)] \geq 0 \\
+& \iff g \geq c \lambda
+\end{align*}
+
+So hence if $g \geq c \lambda$ we will wait forever, as this has no dependence on $k$.
+
+We will now argue that $g_{\text{max}}=c \lambda$, that is at worst the  long-run average cost is $c \lambda$. This can be seen by the strategy $\pi_{\text{neg}}$, a strategy which never renews no matter what state we are in. I.e the patroller neglects the node. As for large $n$ we just pay $c \lambda$ every time step. Hence in these states if we renew we will renew immediately.
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]{Developing an optimal policy}
+\begin{myfigure}[H]
+\begin{center}
+\resizebox{0.7\linewidth}{!}{
+\begin{tikzpicture}[-,auto,node distance=1cm,
+                    thick,main node/.style={circle,fill=white,draw,font=\sffamily\large,minimum size=0.5cm}]
+ \foreach \x in {0,...,5}
+    \foreach \y in {0,...,4} 
+       {\pgfmathtruncatemacro{\label}{\x - 5 *  \y +21}
+        \pgfmathtruncatemacro{\v}{\x}
+        \pgfmathtruncatemacro{\s}{5-\y}
+       \node [main node]  (\x\y) at (1.5*\x,1.5*\y) {\s,\v};}
+       
+       \node[main node] (Renewal) at (1.5*6,1.5*4) {$\theta$};
+
+
+       
+  \foreach \x in {0,...,5}
+    \foreach \y in {2,...,4} 
+       {\pgfmathtruncatemacro{\label}{\x - 5 *  \y +21}
+        \pgfmathtruncatemacro{\v}{\x}
+        \pgfmathtruncatemacro{\s}{5-\y}
+        \pgfmathtruncatemacro{\nv}{\v}
+        \pgfmathtruncatemacro{\ns}{5-\y+1}
+       \draw[->] (\nv\ns)--(\v\s);}
+       
+
+                 
+        \draw[->] (1.5*6,1.5*0.4) to (Renewal);                          
+
+     \foreach \x in {0,...,5}
+       {\draw[-] (\x0) to (1.5*\x,-1.5*0.6);}
+       
+       \draw[-] (1.5*0,-1.5*0.6) to (1.5*6,-1.5*0.6);                                            
+       \draw[-] (1.5*6,-1.5*0.6) to (1.5*6,1.5*0.4);                                 
+       
+    \foreach \x in {0,...,5}
+    { 
+     \draw[->,bend right,dashed] (Renewal) to (\x4);    
+    }   
+        
+
+\node (XaxisLeft) [shift={(-0.5,0.5)}] at (05) {};
+\node (XaxisRight) [shift={(1,0.5)}] at (55) {};
+
+\node (YaxisBottom) [shift={(-1,-0.5)}] at (00) {};
+\node (YaxisTop) [shift={(-1,1)}] at (05) {};
+
+\draw[->,line width=1mm] (XaxisLeft)--(XaxisRight);
+\draw[->,line width=1mm] (YaxisTop)--(YaxisBottom);
+
+\node[font=\sffamily\large] (OLabel) [shift={(0.5,1)}] at (25) {Observation, $v_{j}$};
+\node[font=\sffamily\large] (SLabel) [shift={(-1.5,0.5)}] at (02) {\rotatebox{90}{Time since last visit, $s_{j}$}};
+
+\node[main node] (Example) [shift={(-1,0.5)}] at (05) {$(s_{j},v_{j})$};
+   
+
+\end{tikzpicture}
+}
+\end{center}
+\caption{Threshold policy, $\pi_{\text{Th}}(2)$, with \textcolor{blue}{$b_{j}=5$} and \textcolor{red}{$B_{j}=4$} (e.g. $X_{j} \leq 3.7$)}
+\end{myfigure}
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]{Developing an optimal policy}
+Our neglecting strategy shows that $g \leq c \lambda$ and hence if we are in state $(B,v)$, we can decide to renew now or renew in one time period (at $(B+1,v)$) then follow the optimal, $\sigma$
+
+we will choice to renew now over waiting if
+
+\begin{align*}
+&\lim\limits_{n \rightarrow \infty} V_{n}^{\pi_{1}} (B,v) - V_{n}^{\pi_{0}}(B,v) \geq 0 \\
+& \iff \lim\limits_{n \rightarrow \infty} c \lambda R + vc + E[V_{n-1}^{\sigma}(B+1,0)] - (\omega + E[V_{n-1}^{\sigma}(\theta)]) \geq 0 \\
+& \iff g \leq c (\lambda R +v) 
+\end{align*}
+
+So we renew now if $g \leq c (\lambda R +v)$, as we are guaranteed that $g \leq c \lambda$ we are clearly in this region if $ c (\lambda R +v) \leq c \lambda \iff v \leq \lambda (1-R)$. We also note that the bound is increasing in $v$ so if we will renew in $v$ we definitely renew in $v+1,v+2,...,b$.
 
 \end{frame}
 
