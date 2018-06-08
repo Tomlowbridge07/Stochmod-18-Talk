@@ -480,10 +480,10 @@ C(\omega)=\sum\limits_{i=1}^{n} \left(\min\limits_{\pi \in \Pi^{\text{MN}}} (V_{
 That is for every node, $i$, try to minimize $V_{i}(\pi)+\omega \mu_{i}(\pi)$, where $\omega$ can be interpreted as the service charge for visiting the node.For now we drop the node subscript and just try to find the following,
 
 \begin{align*}
-g=\min_{\pi \in \Pi^{\text{MN}}} V(\pi) + \omega \mu(\pi)
+\textcolor{purple}{g=\min_{\pi \in \Pi^{\text{MN}}} V(\pi) + \omega \mu(\pi)}
 \end{align*}
 
-We solve the single node problem, finding that $g \leq c \lambda$ by never visiting the node. We also find that depending on $g \leq c (\lambda R + v)$ we will renew or not when we have $s=B$.
+We solve the single node problem, finding that \textcolor{purple}{$g \leq c \lambda$ by never visiting} the node. We also find that depending on \textcolor{purple}{$g \leq c (\lambda R + v)$ we will renew or not when we have $s=B$}.
 
 \end{frame}
 
@@ -498,7 +498,7 @@ Policy, $\pi_{\text{Th}}(v_{\text{crit}})$, is the policy which in states:
 \end{itemize}
 \end{definition}
 
-As $g \leq c(\lambda R + v)$ there is some maximum choice for this threshold, $v_{\text{max}} \equiv \max \{ v \in \{0,1,...,b \} \, | \, v \leq \lambda (1-R) \} $, so $v_{\text{crit}} \in \{0,1,...,v_{\text{max}}+1 \}$.
+As $g \leq c(\lambda R + v)$ there is some maximum choice for this threshold, \textcolor{purple}{$v_{\text{max}} \equiv \max \{ v \in \{0,1,...,b \} \, | \, v \leq \lambda (1-R) \} $}, so $v_{\text{crit}} \in \{0,1,...,v_{\text{max}}+1 \}$.
 
 We get bounds on the long-run average cost
 \begin{itemize}
@@ -794,10 +794,7 @@ W_{i}(s_{i},v_{i})&=\begin{cases}
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\end{frame}
-
-\begin{frame}
+\begin{frame}{References}
 \bibliography{mybib}
 \end{frame}
 
