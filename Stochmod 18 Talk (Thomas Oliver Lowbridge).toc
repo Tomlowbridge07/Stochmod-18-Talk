@@ -1,10 +1,10 @@
 \beamer@sectionintoc {1}{Game setup}{3}{0}{1}
-\beamer@sectionintoc {2}{MDP formulation}{6}{0}{2}
-\beamer@sectionintoc {3}{Multi-node relaxation}{15}{0}{3}
-\beamer@sectionintoc {4}{Total-rate constraint}{16}{0}{4}
-\beamer@sectionintoc {5}{Lagrangian relaxation}{18}{0}{5}
-\beamer@sectionintoc {6}{Single node problem}{20}{0}{6}
-\beamer@sectionintoc {7}{Index}{28}{0}{7}
-\beamer@sectionintoc {8}{Heuristics}{30}{0}{8}
-\beamer@sectionintoc {9}{Future work}{38}{0}{9}
-\beamer@sectionintoc {11}{Developing an optimal policy}{41}{0}{10}
+\beamer@sectionintoc {2}{MDP formulation}{7}{0}{2}
+\beamer@sectionintoc {3}{Multi-node relaxation}{16}{0}{3}
+\beamer@sectionintoc {4}{Total-rate constraint}{17}{0}{4}
+\beamer@sectionintoc {5}{Lagrangian relaxation}{19}{0}{5}
+\beamer@sectionintoc {6}{Single node problem}{21}{0}{6}
+\beamer@sectionintoc {7}{Index}{29}{0}{7}
+\beamer@sectionintoc {8}{Heuristics}{31}{0}{8}
+\beamer@sectionintoc {9}{Future work}{39}{0}{9}
+\beamer@sectionintoc {11}{Developing an optimal policy}{42}{0}{10}

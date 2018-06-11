@@ -273,6 +273,77 @@ With the \textcolor{purple}{patroller moving instantaneously} between nodes and 
 
 \end{frame}
 
+\begin{frame}{Example of timing}
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[-,auto,node distance=2cm,
+                    thick,main node/.style={rectangle,draw,font=\sffamily\Large\bfseries}]
+
+%DRAWING Base line
+
+ \draw[->] (0,0)--(10,0);
+ 
+ \foreach \x in {0,...,9}
+ {\draw  (\x,0.5)--(\x,-0.5) ;
+  \node (TimeLabel\x) at (\x,-2.3) {$\x$};} 
+  
+  \node (TimeLabel) at (10,-2.3) {Time};
+
+%Inserting patroller and attackers
+  \node[main node,fill=blue!30] (Pat1) at (1,1.6) {\textcolor{red}{$0$}};
+  \node[main node,fill=blue!30] (PatObs1) at (1,-1.6) {\textcolor{red}{$1$}};
+  \draw[color=blue!30,line width=0.1cm] (Pat1)--(PatObs1);
+  \draw[color=blue!30,line width=0.1cm] (0,0)--(1,0);
+  
+  \node[main node,fill=blue!30] (Pat2) at (6,1.6) {\textcolor{red}{$1$}};
+  \node[main node,fill=blue!30] (PatObs2) at (6,-1.6) {\textcolor{red}{$2$}};
+  \draw[color=blue!30,line width=0.1cm] (Pat2)--(PatObs2);
+  \draw[color=blue!30,line width=0.1cm] (5,0)--(6,0);
+  
+  
+  \node[cross=5pt,color=red] (AttackStart1) at (0.2,0) {};
+  \draw[-,color=red] (AttackStart1.center) to (1,0);
+  \draw[->,color=red] (1,0) to (1,-0.5);
+  \node[cross=5pt,color=red] (NewAttackStart1) at (1,-0.6) {};
+  \draw[->,color=red,dashed] (NewAttackStart1) to (2.5,-0.6);
+  
+  \node[cross=5pt,color=red] (AttackStart2) at (1.5,0) {};
+  \node (AttackEnd2) at (4.3,0) {};
+  \draw[bend left,color=red,->,dashed] (AttackStart2) to (AttackEnd2);
+  
+  \node[cross=5pt,color=red] (AttackStart3) at (3,0) {};
+  \node (AttackEnd3) at (3.9,0) {};
+  \draw[bend left,color=red,->,dashed] (AttackStart3) to (AttackEnd3);
+  
+  \node[cross=5pt,color=red] (AttackStart4) at (4.5,0) {};
+  \node (AttackEnd4) at (8.7,0) {};
+  \draw[bend left,color=red,->,dashed] (AttackStart4) to (AttackEnd4);
+  
+  \node[cross=5pt,color=red] (AttackStart5) at (5.4,0) {};
+  \draw[-,color=red] (AttackStart5.center) to (6,0);
+  \draw[->,color=red] (6,0) to (6,-0.5);
+  \node[cross=5pt,color=red] (NewAttackStart5) at (6,-0.6) {};
+  \draw[->,color=red,dashed] (NewAttackStart5) to (9.5,-0.6);
+  
+  
+  \node[cross=5pt,color=red] (AttackStart6) at (5.7,0) {};
+  \draw[-,color=red] (AttackStart6.center) to (6,0);
+  \draw[->,color=red] (6,0) to (6,-0.5);
+  \node[cross=5pt,color=red] (NewAttackStart5) at (6,-0.9) {};
+  \draw[->,color=red,dashed] (NewAttackStart5) to (6.7,-0.9);
+
+ \node (AttacksCaught) at (3.5,1.7) {\textcolor{blue!50}{Attacks caught}};
+ 
+ \node (AttacksObs) at (3.5,-1.7) {\textcolor{blue!50}{Attackers Observed}};
+  
+       
+\end{tikzpicture}
+\end{center}
+\caption{Example of timing at a node}
+\end{figure}
+
+\end{frame}
+
 \section{MDP formulation}
 \begin{frame}{Markov Decision Process(MDP) formulation}
 This game is a MDP with states \textcolor{purple}{$(\bm{s},\bm{v})$}, where \textcolor{purple}{$s_{i}$} is the \textcolor{purple}{time} since node $i$ was last chosen to be visited and \textcolor{purple}{$v_{i}$} is how many \textcolor{purple}{local-observations} where observed when node $i$ was last visited. With state space $\Omega=\{(\bm{s},\bm{v}) | s_{i}=1,2,.... \, \text{and}  \, v_{i}=0,1,....,b_{i} \; \forall i=1,...,n  \}$.

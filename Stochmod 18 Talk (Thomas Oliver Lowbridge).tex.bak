@@ -145,9 +145,9 @@ A Patrolling game with random attackers and local-observations, \textcolor{purpl
 \begin{itemize}
 \item A \textcolor{purple}{Graph, $Q=(N,E)$}, made of nodes, $N$ ($|N|=n$), and a set of edges, $E$ and an adjacency matrix, \textcolor{purple}{$A$}.
 \item A vector of \textcolor{purple}{attack time distributions, $\bm{X}=(X_{1},...,X_{n})$}.
-\item A vector of \textcolor{purple}{observable capacities, $\bm{b}=(b_{1},...,b_{n})$}
+\item A vector of \textcolor{purple}{observable capacities, $\bm{b}=(b_{1},...,b_{n})$}.
 \item A vector of \textcolor{purple}{poisson arrival rates, $\bm{\lambda}=(\lambda_{1},...,\lambda_{n})$}.
-\item A vector of \textcolor{purple}{costs, $\bm{c}=(c_{1},...,c_{n})$}
+\item A vector of \textcolor{purple}{costs, $\bm{c}=(c_{1},...,c_{n})$}.
 \end{itemize}
 
 \pause
@@ -156,7 +156,7 @@ With the \textcolor{purple}{patroller moving instantaneously} between nodes and 
 \end{frame}
 
 \begin{frame}{Example of Game}
-\begin{myfigure}[H]
+\begin{figure}[H]
 \begin{center}
 \begin{tikzpicture}[-,auto,node distance=2cm,
                     thick,main node/.style={circle,fill=white,draw,font=\sffamily\Large\bfseries}]
@@ -269,8 +269,78 @@ With the \textcolor{purple}{patroller moving instantaneously} between nodes and 
 \end{tikzpicture}
 \end{center}
 \caption{Example of $G=(K_{4},\bm{X},\bm{b},\bm{\lambda},\bm{c})$ with patroller currently at node $3$}
-\end{myfigure}
+\end{figure}
 
+\end{frame}
+
+\begin{frame}{Example of timing}
+\begin{figure}{H}
+\begin{center}
+\begin{tikzpicture}[-,auto,node distance=2cm,
+                    thick,main node/.style={rectangle,draw,font=\sffamily\Large\bfseries}]
+
+%DRAWING Base line
+
+ \draw[->] (0,0)--(10,0);
+ 
+ \foreach \x in {0,...,9}
+ {\draw  (\x,0.5)--(\x,-0.5) ;
+  \node (TimeLabel\x) at (\x,-2.3) {$\x$};} 
+  
+  \node (TimeLabel) at (10,-2.3) {Time};
+
+%Inserting patroller and attackers
+  \node[main node,fill=blue!30] (Pat1) at (1,1.6) {\textcolor{red}{$0$}};
+  \node[main node,fill=blue!30] (PatObs1) at (1,-1.6) {\textcolor{red}{$1$}};
+  \draw[color=blue!30,line width=0.1cm] (Pat1)--(PatObs1);
+  \draw[color=blue!30,line width=0.1cm] (0,0)--(1,0);
+  
+  \node[main node,fill=blue!30] (Pat2) at (6,1.6) {\textcolor{red}{$1$}};
+  \node[main node,fill=blue!30] (PatObs2) at (6,-1.6) {\textcolor{red}{$2$}};
+  \draw[color=blue!30,line width=0.1cm] (Pat2)--(PatObs2);
+  \draw[color=blue!30,line width=0.1cm] (5,0)--(6,0);
+  
+  
+  \node[cross=5pt,color=red] (AttackStart1) at (0.2,0) {};
+  \draw[-,color=red] (AttackStart1.center) to (1,0);
+  \draw[->,color=red] (1,0) to (1,-0.5);
+  \node[cross=5pt,color=red] (NewAttackStart1) at (1,-0.6) {};
+  \draw[->,color=red,dashed] (NewAttackStart1) to (2.5,-0.6);
+  
+  \node[cross=5pt,color=red] (AttackStart2) at (1.5,0) {};
+  \node (AttackEnd2) at (4.3,0) {};
+  \draw[bend left,color=red,->,dashed] (AttackStart2) to (AttackEnd2);
+  
+  \node[cross=5pt,color=red] (AttackStart3) at (3,0) {};
+  \node (AttackEnd3) at (3.9,0) {};
+  \draw[bend left,color=red,->,dashed] (AttackStart3) to (AttackEnd3);
+  
+  \node[cross=5pt,color=red] (AttackStart4) at (4.5,0) {};
+  \node (AttackEnd4) at (8.7,0) {};
+  \draw[bend left,color=red,->,dashed] (AttackStart4) to (AttackEnd4);
+  
+  \node[cross=5pt,color=red] (AttackStart5) at (5.4,0) {};
+  \draw[-,color=red] (AttackStart5.center) to (6,0);
+  \draw[->,color=red] (6,0) to (6,-0.5);
+  \node[cross=5pt,color=red] (NewAttackStart5) at (6,-0.6) {};
+  \draw[->,color=red,dashed] (NewAttackStart5) to (9.5,-0.6);
+  
+  
+  \node[cross=5pt,color=red] (AttackStart6) at (5.7,0) {};
+  \draw[-,color=red] (AttackStart6.center) to (6,0);
+  \draw[->,color=red] (6,0) to (6,-0.5);
+  \node[cross=5pt,color=red] (NewAttackStart5) at (6,-0.9) {};
+  \draw[->,color=red,dashed] (NewAttackStart5) to (6.7,-0.9);
+
+ \node (AttacksCaught) at (3.5,1.7) {\textcolor{blue!50}{Attacks caught}};
+ 
+ \node (AttacksObs) at (3.5,-1.7) {\textcolor{blue!50}{Attackers Observed}};
+  
+       
+\end{tikzpicture}
+\end{center}
+\caption{Example of timing at a node}
+\end{figure}
 \end{frame}
 
 \section{MDP formulation}
@@ -278,12 +348,14 @@ With the \textcolor{purple}{patroller moving instantaneously} between nodes and 
 This game is a MDP with states \textcolor{purple}{$(\bm{s},\bm{v})$}, where \textcolor{purple}{$s_{i}$} is the \textcolor{purple}{time} since node $i$ was last chosen to be visited and \textcolor{purple}{$v_{i}$} is how many \textcolor{purple}{local-observations} where observed when node $i$ was last visited. With state space $\Omega=\{(\bm{s},\bm{v}) | s_{i}=1,2,.... \, \text{and}  \, v_{i}=0,1,....,b_{i} \; \forall i=1,...,n  \}$.
 
 \
+\pause
 
-The current node can be identified by $l(\bm{s})=\argmin_{i} \bm{s}$. The current node will have $s_{i}=1$. The available actions from any state is $\mathcal{A}(\bm{s})=\{j | A_{l(\bm{s}),j}=1 \}$, that is nodes we can move to from the current node.
+The current node can be identified by $l(\bm{s})=\argmin_{i} \bm{s}$. The current node will have $s_{i}=1$. The available actions from any state is $\mathcal{A}(\bm{s})=\{j \, | \, A_{l(\bm{s}),j}=1 \}$, that is nodes we can move to from the current node.
 
 \
+\pause
  
-A transition from a state,$(\bm{s},\bm{v})$, with a chosen action, $i$, is $\phi(\bm{s},\bm{v},i)=(\widetilde{\bm{s}},\widetilde{\bm{v}})$ where $\widetilde{s}$ has; \textcolor{purple}{$\widetilde{s}_{i}=1$} and \textcolor{purple}{$\widetilde{s}_{j}=s_{j}+1 \; \forall j \neq i$} and $\widetilde{v}$ has; \textcolor{purple}{$\widetilde{v}_{i} \sim TPo(\lambda_{i})$} and  \textcolor{purple}{$\widetilde{v}_{j}=v_{j} \; \forall j \neq i$}.
+A transition from a state, $(\bm{s},\bm{v})$, with a chosen action, $i$, is $\phi(\bm{s},\bm{v},i)=(\widetilde{\bm{s}},\widetilde{\bm{v}})$ where $\widetilde{s}$ has; \textcolor{purple}{$\widetilde{s}_{i}=1$} and \textcolor{purple}{$\widetilde{s}_{j}=s_{j}+1 \; \forall j \neq i$} and $\widetilde{v}$ has; \textcolor{purple}{$\widetilde{v}_{i} \sim TPo(\lambda_{i})$} and  \textcolor{purple}{$\widetilde{v}_{j}=v_{j} \; \forall j \neq i$}.
 
 Where $TPo(\lambda,b)$ is the Poisson distribution truncated at the value $b$. I.e
 \begin{align*}
@@ -303,9 +375,13 @@ To avoid certain problems, we would like to limit ourselves to a finite state sp
 \
 
 As in \cite{Lin2013}, we will bound the attack times to create a finite state space, and define \textcolor{purple}{$B_{j} \equiv \min \{ k \, | \, k \in \mathbb{Z}^{+} , P(X_{j} \leq k)=1 \}$}. We will also bound our observable capacities to finite integers \textcolor{purple}{$b_{i} \in \mathbb{Z}^{+}_{0}$}.This restricts our state space to a finite size
+
+\
+
 $\Omega=\{(\bm{s},\bm{v}) \, | \, s_{i}=1,2,....,B_{i}+1 \, \text{and}  \, v_{i}=0,1,....,b_{i} \, \forall i=1,...,n  \}$.
 
 \
+\pause
 
 Now however our transistions are limited and become $\phi(\bm{s},\bm{v},i)=(\widetilde{\bm{s}},\widetilde{\bm{v}})$ where $\widetilde{s}$ has; $\widetilde{s}_{i}=1$ and \textcolor{purple}{$\widetilde{s}_{j}=\min \{s_{j}+1,B_{j}+1 \} \; \forall j \neq i$} and $\widetilde{v}$ has; $\widetilde{v}_{i} \sim TPo(\lambda_{i},b_{i})$ and  $\widetilde{v}_{j}=v_{i} \; \forall j \neq i$.
 
@@ -313,7 +389,7 @@ Now however our transistions are limited and become $\phi(\bm{s},\bm{v},i)=(\wid
 
 \begin{frame}{Example of state space}
 
-\begin{myfigure}[H]
+\begin{figure}[H]
 \begin{center}
 \resizebox{0.8\linewidth}{!}{
 \begin{tikzpicture}[-,auto,node distance=1cm,
@@ -362,7 +438,7 @@ Now however our transistions are limited and become $\phi(\bm{s},\bm{v},i)=(\wid
 }
 \end{center}
 \caption{State space diagram, with \textcolor{blue}{$b_{j}=5$} and \textcolor{red}{$B_{j}=4$} (e.g. $X_{j} \leq 3.7$)}
-\end{myfigure}
+\end{figure}
 
 \end{frame}
 
@@ -371,12 +447,13 @@ The cost at a node is zero if that node is chosen, otherwise it is the cost of a
 \
 \begin{align*}
 C_{j}(\bm{s},\bm{v},i)=\begin{cases}
-c_{j} \lambda_{j} \int_{s_{j}-1}^{s_{j}} P(X_{j} \leq t) dt
-+ c_{j}v_{j}P(s_{j}-1 < X_{j} \leq s_{j}) \text{ if } j \neq i \\
+\underbrace{c_{j} \lambda_{j} \int_{s_{j}-1}^{s_{j}} P(X_{j} \leq t) dt}_{\text{Arrivals finishing}}
++ \underbrace{c_{j}v_{j}P(s_{j}-1 < X_{j} \leq s_{j})}_{\text{Local-observed finishing}} \text{ if } j \neq i \\
 0 \text{ if } j=i \\
 \end{cases}
 \end{align*}
 
+\pause
 We will restrict ourselves to deterministic attack times, $P(X_{j}=x_{j})=1 \; \forall j$ so that
 
 \begin{align*}
@@ -386,9 +463,7 @@ c_{j} \lambda_{j} \text{ for } s_{j}=B_{j}+1,i \neq j  \\
 0 \text{ Otherwise} \\
 \end{cases}
 \end{align*}
-Where $R_{j}=B_{j}-x_{j}$
-
-And we only worry about incurring costs in states when $s_{i}=B_{i} \text{ or } B_{i}+1$ for some $i$.
+Where $R_{j}=B_{j}-x_{j}$. We see that we only worry about incurring costs in states when $s_{i}=B_{i}$ or $B_{i}+1$ for some $i$.
 \end{frame}
 
 \begin{frame}{Objective}
@@ -408,7 +483,7 @@ Where $\phi^{k}_{\pi}(\bm{s}_{0},\bm{v}_{0})$ is the state after $k$ transitions
 \end{frame}
 
 \section{Multi-node relaxation}
-\begin{frame}{Problem Relaxation: Multiple Node}
+\begin{frame}{Multiple node relaxation}
 We now relax the problem to that of a patroller who can visit multiple nodes in the next time period.
 
 We will call this Problem the \textcolor{purple}{multiple-node(MN)} problem. We extend the class of polcies to 
@@ -429,7 +504,7 @@ Define the long-run rate of visits to node $i$, starting at $(\bm{s}_{0},\bm{v}_
 \mu_{i}(\pi,\bm{s}_{0},\bm{v}_{0})=\lim\limits_{N \rightarrow \infty} \frac{1}{N} \sum\limits_{k=0}^{N-1} \alpha_{\phi_{\pi}^{k}(\bm{s}_{0},\bm{v}_{0}),i}
 \end{align*}
 \end{definition}
-
+\pause
 We now impose the \textcolor{purple}{total-rate} constraint, that is the long-run overall visit rate to all nodes is no greater than 1. and restrict the MN problem by this to get the total-rate(TR) problem and its class of policies
 
 \begin{align*}
@@ -449,6 +524,9 @@ C(\omega)&=\min_{\pi \in \Pi^{\text{MN}}} \left\{ \sum\limits_{i=1}^{n} V_{i}(\p
 \end{align*}
 
 By incorporating the total-rate constraint as a Lagrange multiplier we can drop the constraint, so that the patroller can choose to visit any number of nodes in each time period (each costing $\omega$).
+
+\
+\pause
 
 We can show that, \textcolor{purple}{$C^{\text{OPT}} \geq C^{\text{TR}} \geq C(\omega)$}.
 \end{frame}
@@ -476,13 +554,14 @@ We now want to find $C(\omega)=\min\limits_{\pi \in \Pi^{\text{MN}}} \sum\limits
 C(\omega)=\sum\limits_{i=1}^{n} \left(\min\limits_{\pi \in \Pi^{\text{MN}}} (V_{i}(\pi)+\omega \mu_{i}(\pi))\right) - \omega
 \end{align*}
 
-
-That is for every node, $i$, try to minimize $V_{i}(\pi)+\omega \mu_{i}(\pi)$, where $\omega$ can be interpreted as the service charge for visiting the node.For now we drop the node subscript and just try to find the following,
+\pause
+That is for every node, $i$, try to minimize $V_{i}(\pi)+\omega \mu_{i}(\pi)$, where $\omega$ can be interpreted as the service charge for visiting the node. For now we drop the node subscript and just try to find the following,
 
 \begin{align*}
 \textcolor{purple}{g=\min_{\pi \in \Pi^{\text{MN}}} V(\pi) + \omega \mu(\pi)}
 \end{align*}
 
+\pause
 We solve the single node problem, finding that \textcolor{purple}{$g \leq c \lambda$ by never visiting} the node. We also find that depending on \textcolor{purple}{$g \leq c (\lambda R + v)$ we will renew or not when we have $s=B$}.
 
 \end{frame}
@@ -497,9 +576,9 @@ Policy, $\pi_{\text{Th}}(v_{\text{crit}})$, is the policy which in states:
 \item $(B+1,v)$ renews now.
 \end{itemize}
 \end{definition}
-
+\pause
 As $g \leq c(\lambda R + v)$ there is some maximum choice for this threshold, \textcolor{purple}{$v_{\text{max}} \equiv \max \{ v \in \{0,1,...,b \} \, | \, v \leq \lambda (1-R) \} $}, so $v_{\text{crit}} \in \{0,1,...,v_{\text{max}}+1 \}$.
-
+\pause
 We get bounds on the long-run average cost
 \begin{itemize}
 \item $g \leq c \lambda R$ if $v_{\text{crit}}=0$.
@@ -668,9 +747,17 @@ W_{i}(s_{i},v_{i})&=\begin{cases}
 
 \section{Heuristics}
 \begin{frame}{Heuristic types}
+We now use the index to develop two types of heuristics, using the indices for states:
+
+\
+\pause
+
 \begin{definition}[Benefit Heuristic(BH)]
 The benefit heuristic(BH) has a patroller currently in state $(\bm{s},\bm{v})$ look at all paths of length, $l$. They choose the path with the largest aggregate of indices collected along the path. The action is the first node in the path.
 \end{definition}
+
+\
+\pause
 
 \begin{definition}[Penalty Heuristic(PH)]
 To develop a penalty heuristic(PH) based on the index, have a patroller currently in state $(\bm{s},\bm{v})$ look at all paths of length, $l$. They choose the path with the smallest aggregate of indices not collected along the path. The action is the first node in the path.
@@ -679,32 +766,32 @@ To develop a penalty heuristic(PH) based on the index, have a patroller currentl
 \end{frame}
 
 \begin{frame}{Heuristic depth}
-If we are looking at all paths of length $d$, we might as well consider applying the heuristic to all paths of lengths, $l=1,...,d$. We call this the heuristic depth.
+If we are looking at all paths of length $l$, we might as well consider applying the heuristic to all paths of lengths, $1,...,l$. We call this the heuristic depth, $d=l$.
 
 \
 
-We are left with $d$ paths and therefore $d$ suggestions for the first action to take. To decide on which action to take, we look at the average cost the path incurs and from the state at the end of the path we look at the average cost to decay to the neglected state $(\bm{B+1},\bm{v})$.
+Once we apply our heuristic choice we are left with $d$ paths and therefore $d$ suggestions for the first action to take. To decide on which action to take, we look at the average cost the path incurs and from the state at the end of the path we look at the average cost to decay to the neglected state $(\bm{B+1},\bm{v})$.
 
 \
 
-We will call the depth heuristics, BH($d$) and PH($d$). We now perform numerical experiments, for 500 scenarios on $K_{4}$, using the PH($d$), as suggested by \cite{Lin2013} instead of BH($d$), to illustrate a problem with the current index
+We will call the depth heuristics, BH($d$) and PH($d$). We now perform numerical experiments, for 500 scenarios on $K_{4}$, using the PH($d$), as suggested by \cite{Lin2013} instead of BH($d$), to illustrate a problem with the current index.
 
 \end{frame}
 
 \begin{frame}{Numerical Experiments}
 
-\begin{myfigure}[H]
+\begin{figure}[H]
 \begin{center}
 \resizebox{\linewidth}{!}{
 \input{Images/OldPlainPenaltyHeuristicOnComplete.tex}
 }
 \end{center}
 \caption{Percentage Error frequency for PH of depths $1,2,3$}
-\end{myfigure}
+\end{figure}
 
 \end{frame}
 
-\begin{frame}{An index}
+\begin{frame}{An alternative index}
 We suggest a slight alteration, to uncap the index for, $s_{i}=B_{i}, v_{i} \geq v_{i,\text{max}}$. This means that the index prioritizes observations that are about to finish.
 \begin{definition}[Alternative Plain Node Index]
 We define the index for node $i$, when the system is in state, $(\bm{s},\bm{v})$, to be
@@ -722,7 +809,7 @@ W_{i}(s_{i},v_{i})&=\begin{cases}
 
 
 \begin{frame}{Suggestion of node index fix}
-\begin{myfigure}[H]
+\begin{figure}[H]
 \begin{center}
 \resizebox{0.7\linewidth}{!}{
 \begin{tikzpicture}[-,auto,node distance=1cm,
@@ -770,27 +857,29 @@ W_{i}(s_{i},v_{i})&=\begin{cases}
 }
 \end{center}
 \caption{New suggested index value for states}
-\end{myfigure}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Comparing indices}
 
-\begin{myfigure}[H]
+\begin{figure}[H]
 \begin{center}
 \resizebox{\linewidth}{!}{
 \input{Images/ComparePlainPenaltyHeuristicOnComplete.tex}
 }
 \end{center}
 \caption{Percentage Error frequency for PH of depth $3$ for old and new index}
-\end{myfigure}
+\end{figure}
 
 \end{frame}
 
+\section{Future work}
 \begin{frame}{Future work}
 \begin{itemize}
-\item Recode heuristic for each look-ahead window, $l$, to find the cycles and therefore average. This will make sure the heuristics are weakly improving in $d$.
-\item Look at how to pick a heuristic type dependent on graphical structure
-\item Improve theory to deal with generic distributions
+\item Investigate whether different types of graphs are more susceptible to different heuristic/Index types.
+\item Look at improving the heuristic, by working with cyclic costs rather than proxy average costs and decay costs.
+\item Improve theory to deal with generic distributions.
+\item Improve theory to deal with no waiting capacities.
 \end{itemize}
 \end{frame}
 
@@ -831,7 +920,7 @@ Where $g$ is the long-run average cost and so we know $g \geq 0$ hence we will a
 \end{frame}
 
 \begin{frame}[plain,noframenumbering]{Developing and optimal policy}
-\begin{myfigure}[H]
+\begin{figure}[H]
 \begin{center}
 \resizebox{0.7\linewidth}{!}{
 \begin{tikzpicture}[-,auto,node distance=1cm,
@@ -882,7 +971,7 @@ Where $g$ is the long-run average cost and so we know $g \geq 0$ hence we will a
 }
 \end{center}
 \caption{Threshold policy, $\pi_{\text{Th}}(2)$, with \textcolor{blue}{$b_{j}=5$} and \textcolor{red}{$B_{j}=4$} (e.g. $X_{j} \leq 3.7$)}
-\end{myfigure}
+\end{figure}
 \end{frame}
 
 
@@ -908,7 +997,7 @@ We will now argue that $g_{\text{max}}=c \lambda$, that is at worst the  long-ru
 \end{frame}
 
 \begin{frame}[plain,noframenumbering]{Developing an optimal policy}
-\begin{myfigure}[H]
+\begin{figure}[H]
 \begin{center}
 \resizebox{0.7\linewidth}{!}{
 \begin{tikzpicture}[-,auto,node distance=1cm,
@@ -968,7 +1057,7 @@ We will now argue that $g_{\text{max}}=c \lambda$, that is at worst the  long-ru
 }
 \end{center}
 \caption{Threshold policy, $\pi_{\text{Th}}(2)$, with \textcolor{blue}{$b_{j}=5$} and \textcolor{red}{$B_{j}=4$} (e.g. $X_{j} \leq 3.7$)}
-\end{myfigure}
+\end{figure}
 \end{frame}
 
 \begin{frame}[plain,noframenumbering]{Developing an optimal policy}
