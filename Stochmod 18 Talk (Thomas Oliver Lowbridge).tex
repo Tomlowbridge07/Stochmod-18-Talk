@@ -552,7 +552,7 @@ We can show that, \textcolor{purple}{$C^{\text{OPT}} \geq C^{\text{TR}} \geq C(\
 We now want to find $C(\omega)=\min\limits_{\pi \in \Pi^{\text{MN}}} \sum\limits_{i=1}^{n} (V_{i}(\pi)+\omega \mu_{i}(\pi)) - \omega$. This problem, as we are in the multi-node class, can be rewrote as
 
 \begin{align*}
-C(\omega)=\sum\limits_{i=1}^{n} \left(\min\limits_{\pi \in \Pi^{\text{MN}}} (V_{i}(\pi)+\omega \mu_{i}(\pi))\right) - \omega
+C(\omega)=\sum\limits_{i=1}^{n} \left(\min\limits_{\pi \in \Pi^{\text{MN}}} \left(V_{i}(\pi)+\omega \mu_{i}(\pi)\right)\right) - \omega
 \end{align*}
 
 \pause
@@ -563,12 +563,11 @@ That is for every node, $i$, try to minimize $V_{i}(\pi)+\omega \mu_{i}(\pi)$, w
 \end{align*}
 
 \pause
-We solve the single node problem, finding that \textcolor{purple}{$g \leq c \lambda$ by never visiting} the node. We also find that depending on \textcolor{purple}{$g \leq c (\lambda R + v)$ we will renew or not when we have $s=B$}.
+We can solve this problem to find bounds on $g$ suggesting a certain type of threshold policy
 
 \end{frame}
 
 \begin{frame}{Developing a Threshold policy}
-This motivates a threshold policy as defined.
 \begin{definition}[Threshold Policy]
 Policy, $\pi_{\text{Th}}(v_{\text{crit}})$, is the policy which in states:
 \begin{itemize}
@@ -578,9 +577,9 @@ Policy, $\pi_{\text{Th}}(v_{\text{crit}})$, is the policy which in states:
 \end{itemize}
 \end{definition}
 \pause
-As $g \leq c(\lambda R + v)$ there is some maximum choice for this threshold, \textcolor{purple}{$v_{\text{max}} \equiv \max \{ v \in \{0,1,...,b \} \, | \, v \leq \lambda (1-R) \} $}, so $v_{\text{crit}} \in \{0,1,...,v_{\text{max}}+1 \}$.
+Because of one of the bounds there is a maximum for $v_{text{crit}}$, \textcolor{purple}{$v_{\text{max}} \equiv \max \{ v \in \{0,1,...,b \} \, | \, v \leq \lambda (1-R) \} $}, with $v_{\text{crit}} \in \{0,1,...,v_{\text{max}}+1 \}$.
 \pause
-We get bounds on the long-run average cost
+We get bounds on the long-run average cost from our solution of
 \begin{itemize}
 \item $g \leq c \lambda R$ if $v_{\text{crit}}=0$.
 
