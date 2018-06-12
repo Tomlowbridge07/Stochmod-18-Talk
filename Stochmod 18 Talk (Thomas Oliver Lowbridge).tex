@@ -356,7 +356,7 @@ The current node can be identified by $l(\bm{s})=\argmin_{i} \bm{s}$. The curren
 \
 \pause
  
-A transition from a state, $(\bm{s},\bm{v})$, with a chosen action, $i$, is $\phi(\bm{s},\bm{v},i)=(\widetilde{\bm{s}},\widetilde{\bm{v}})$ where $\widetilde{s}$ has; \textcolor{purple}{$\widetilde{s}_{i}=1$} and \textcolor{purple}{$\widetilde{s}_{j}=s_{j}+1 \; \forall j \neq i$} and $\widetilde{v}$ has; \textcolor{purple}{$\widetilde{v}_{i} \sim TPo(\lambda_{i})$} and  \textcolor{purple}{$\widetilde{v}_{j}=v_{j} \; \forall j \neq i$}.
+A transition from a state, $(\bm{s},\bm{v})$, with a chosen action, $i$, is $\phi(\bm{s},\bm{v},i)=(\widetilde{\bm{s}},\widetilde{\bm{v}})$ where $\widetilde{s}$ has; \textcolor{purple}{$\widetilde{s}_{i}=1$} and \textcolor{purple}{$\widetilde{s}_{j}=s_{j}+1 \; \forall j \neq i$} and $\widetilde{v}$ has; \textcolor{purple}{$\widetilde{v}_{i} \sim TPo(\lambda_{i},b_{i})$} and  \textcolor{purple}{$\widetilde{v}_{j}=v_{j} \; \forall j \neq i$}.
 
 Where $TPo(\lambda,b)$ is the Poisson distribution truncated at the value $b$. I.e
 \begin{align*}
@@ -384,7 +384,7 @@ $\Omega=\{(\bm{s},\bm{v}) \, | \, s_{i}=1,2,....,B_{i}+1 \, \text{and}  \, v_{i}
 \
 \pause
 
-Now however our transistions are limited and become $\phi(\bm{s},\bm{v},i)=(\widetilde{\bm{s}},\widetilde{\bm{v}})$ where $\widetilde{s}$ has; $\widetilde{s}_{i}=1$ and \textcolor{purple}{$\widetilde{s}_{j}=\min \{s_{j}+1,B_{j}+1 \} \; \forall j \neq i$} and $\widetilde{v}$ has; $\widetilde{v}_{i} \sim TPo(\lambda_{i},b_{i})$ and  $\widetilde{v}_{j}=v_{i} \; \forall j \neq i$.
+Now however our transitions are limited and become $\phi(\bm{s},\bm{v},i)=(\widetilde{\bm{s}},\widetilde{\bm{v}})$ where $\widetilde{s}$ has; $\widetilde{s}_{i}=1$ and \textcolor{purple}{$\widetilde{s}_{j}=\min \{s_{j}+1,B_{j}+1 \} \; \forall j \neq i$} and $\widetilde{v}$ has; $\widetilde{v}_{i} \sim TPo(\lambda_{i},b_{i})$ and  $\widetilde{v}_{j}=v_{i} \; \forall j \neq i$.
 
 \end{frame}
 
@@ -577,7 +577,7 @@ Policy, $\pi_{\text{Th}}(v_{\text{crit}})$, is the policy which in states:
 \end{itemize}
 \end{definition}
 \pause
-Because of one of the bounds there is a maximum for $v_{text{crit}}$, \textcolor{purple}{$v_{\text{max}} \equiv \max \{ v \in \{0,1,...,b \} \, | \, v \leq \lambda (1-R) \} $}, with $v_{\text{crit}} \in \{0,1,...,v_{\text{max}}+1 \}$.
+Because of one of the bounds there is a maximum for $v_{\text{crit}}$, \textcolor{purple}{$v_{\text{max}} \equiv \max \{ v \in \{0,1,...,b \} \, | \, v \leq \lambda (1-R) \} $}, with $v_{\text{crit}} \in \{0,1,...,v_{\text{max}}+1 \}$.
 \pause
 We get bounds on the long-run average cost from our solution of
 \begin{itemize}
@@ -685,7 +685,9 @@ These now give us a fair cost to renew in $(B,v)$ depending on $v$.
 
 \section{Index}
 \begin{frame}{An index}
-We now reinsert the node subscript, $i$, we develop an index
+We can use these bounds on the visiting cost, $\omega$, to develop an index by reinserting the node subscript, $i$, to create
+
+
 \begin{definition}[Node Index]
 We define the index for node $i$, when the system is in state, $(\bm{s},\bm{v})$, to be
 \begin{align*}
