@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.6.1)  13 JUN 2018 13:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.6.1)  13 JUN 2018 13:16
 entering extended mode
 **"./Stochmod 18 Talk (Thomas Oliver Lowbridge).tex"
 ("Stochmod 18 Talk (Thomas Oliver Lowbridge).tex"
@@ -1740,25 +1740,23 @@ Overfull \vbox (0.47816pt too high) detected at line 677
 
 ] [36
 
-] [37
-
 ]
-(Images/ComparePlainPenaltyHeuristicOnComplete.tex) [38
+(Images/ComparePlainPenaltyHeuristicOnComplete.tex) [37
+
+] [38
 
 ] [39
 
 ] [40
 
-] [41
-
 ]
-[42
+[41
+
+] [42
 
 ] [43
 
 ] [44
-
-] [45
 
 ]
 \tf@nav=\write9
@@ -1781,10 +1779,10 @@ Package rerunfilecheck Info: File `"Stochmod 18 Talk (Thomas Oliver Lowbridge)"
 (rerunfilecheck)             Checksum: BA09156058FD9CBB3A2E6A56888B8C84;523.
  ) 
 Here is how much of TeX's memory you used:
- 36618 strings out of 493305
- 729673 string characters out of 3138872
- 835513 words of memory out of 3000000
- 39451 multiletter control sequences out of 15000+200000
+ 36614 strings out of 493305
+ 729638 string characters out of 3138872
+ 835478 words of memory out of 3000000
+ 39449 multiletter control sequences out of 15000+200000
  552164 words of font info for 96 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,23n,108p,813b,1021s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1812,10 +1810,10 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmsy9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
 amsfonts/symbols/msbm10.pfb>
-Output written on "Stochmod 18 Talk (Thomas Oliver Lowbridge).pdf" (45 pages, 4
-16437 bytes).
+Output written on "Stochmod 18 Talk (Thomas Oliver Lowbridge).pdf" (44 pages, 4
+10290 bytes).
 PDF statistics:
- 475 PDF objects out of 1000 (max. 8388607)
- 102 named destinations out of 1000 (max. 500000)
+ 469 PDF objects out of 1000 (max. 8388607)
+ 100 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 

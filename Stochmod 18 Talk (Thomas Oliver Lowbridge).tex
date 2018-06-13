@@ -811,57 +811,57 @@ W_{i}(s_{i},v_{i})&=\begin{cases}
 
 
 
-\begin{frame}{Suggestion of node index fix}
-\begin{figure}[H]
-\begin{center}
-\resizebox{0.7\linewidth}{!}{
-\begin{tikzpicture}[-,auto,node distance=1cm,
-                    thick,main node/.style={circle,fill=white,draw,font=\sffamily\large,minimum size=0.5cm}]
- \foreach \x in {0,...,5}
-    \foreach \y in {0,...,4} 
-       {\pgfmathtruncatemacro{\label}{\x - 5 *  \y +21}
-        \pgfmathtruncatemacro{\v}{\x}
-        \pgfmathtruncatemacro{\s}{5-\y}
-       \node [main node]  (\x\y) at (1.5*\x,1.5*\y) {0};}
-       
-  
-  \foreach \x in {0,...,5}
-  {        \pgfmathtruncatemacro{\v}{\x} 
-  \node[main node] (\x1) at (\x1) {$\Delta_{j}(\v)$};}
-
-  \foreach \x in {0,...,1}
-  { \pgfmathtruncatemacro{\v}{\x+1} 
-  \node[main node] (\x0) at (\x0) {$\Delta_{j}(\v)$};}
-  
-  \foreach \x in {2,...,5}
-  { 
-  \node[main node] (\x0) at (\x0) {$\widetilde{\Delta}_{j}$};}   
-       
-       
-       
-        
-
-\node (XaxisLeft) [shift={(-0.5,1)}] at (04) {};
-\node (XaxisRight) [shift={(1,1)}] at (54) {};
-
-\node (YaxisBottom) [shift={(-1,-0.5)}] at (00) {};
-\node (YaxisTop) [shift={(-1,1)}] at (04) {};
-
-\draw[->,line width=1mm] (XaxisLeft)--(XaxisRight);
-\draw[->,line width=1mm] (YaxisTop)--(YaxisBottom);
-
-\node[font=\sffamily\large] (OLabel) [shift={(0.5,1.5)}] at (24) {Observation, $v_{j}$};
-\node[font=\sffamily\large] (SLabel) [shift={(-1.5,0.5)}] at (02) {\rotatebox{90}{Time since last visit, $s_{j}$}};
-
-\node[main node] (Example) [shift={(-1,1)}] at (04) {$(s_{j},v_{j})$};
-   
-
-\end{tikzpicture}
-}
-\end{center}
-\caption{New suggested index value for states}
-\end{figure}
-\end{frame}
+%\begin{frame}{Suggestion of node index fix}
+%\begin{figure}[H]
+%\begin{center}
+%\resizebox{0.7\linewidth}{!}{
+%\begin{tikzpicture}[-,auto,node distance=1cm,
+%                    thick,main node/.style={circle,fill=white,draw,font=\sffamily\large,minimum size=0.5cm}]
+% \foreach \x in {0,...,5}
+%    \foreach \y in {0,...,4} 
+%       {\pgfmathtruncatemacro{\label}{\x - 5 *  \y +21}
+%        \pgfmathtruncatemacro{\v}{\x}
+%        \pgfmathtruncatemacro{\s}{5-\y}
+%       \node [main node]  (\x\y) at (1.5*\x,1.5*\y) {0};}
+%       
+%  
+%  \foreach \x in {0,...,5}
+%  {        \pgfmathtruncatemacro{\v}{\x} 
+%  \node[main node] (\x1) at (\x1) {$\Delta_{j}(\v)$};}
+%
+%  \foreach \x in {0,...,1}
+%  { \pgfmathtruncatemacro{\v}{\x+1} 
+%  \node[main node] (\x0) at (\x0) {$\Delta_{j}(\v)$};}
+%  
+%  \foreach \x in {2,...,5}
+%  { 
+%  \node[main node] (\x0) at (\x0) {$\widetilde{\Delta}_{j}$};}   
+%       
+%       
+%       
+%        
+%
+%\node (XaxisLeft) [shift={(-0.5,1)}] at (04) {};
+%\node (XaxisRight) [shift={(1,1)}] at (54) {};
+%
+%\node (YaxisBottom) [shift={(-1,-0.5)}] at (00) {};
+%\node (YaxisTop) [shift={(-1,1)}] at (04) {};
+%
+%\draw[->,line width=1mm] (XaxisLeft)--(XaxisRight);
+%\draw[->,line width=1mm] (YaxisTop)--(YaxisBottom);
+%
+%\node[font=\sffamily\large] (OLabel) [shift={(0.5,1.5)}] at (24) {Observation, $v_{j}$};
+%\node[font=\sffamily\large] (SLabel) [shift={(-1.5,0.5)}] at (02) {\rotatebox{90}{Time since last visit, $s_{j}$}};
+%
+%\node[main node] (Example) [shift={(-1,1)}] at (04) {$(s_{j},v_{j})$};
+%   
+%
+%\end{tikzpicture}
+%}
+%\end{center}
+%\caption{New suggested index value for states}
+%\end{figure}
+%\end{frame}
 
 \begin{frame}{Comparing indices}
 
