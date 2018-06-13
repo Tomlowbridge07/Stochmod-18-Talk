@@ -128,22 +128,29 @@ cross/.default={1pt}}
 \begin{itemize}
 \item Multi-node relaxation
 \item Total-rate constraint
-\item Lagrangain relaxation
+\item Lagrangian relaxation
 \end{itemize}
 \item Single node problem
 \begin{itemize}
 \item Developing a threshold policy
-\item Fair costs
+\item Fair costs for visiting a node
 \end{itemize}
 \item Indices and heuristics
+\begin{itemize}
+\item Index suggested by fair cost
+\item Heuristic types
+\item Numerical experiments
+\end{itemize}
 \end{itemize}
 \end{frame}
 
 \section{Game setup}
 \begin{frame}{Problem setup}
-We wish to model a moving patroller with attackers who arrive on a network, with some type of suspicious attackers.
+We wish to model a moving patroller with attackers who arrive on a network, with some aspect of suspicion.
 
-As an example, we could consider a security guard patrolling a museum, with attackers who are trying to steal parts of the exhibits in each room. We implement semi-intelligent thieves, if they arrive and see the guard they will wait until they try  to steal.
+\
+
+As an example, we could consider a security guard patrolling a museum, with attackers who are trying to steal parts of the exhibits in each room. However the thieves will not begin to steal if they notice the guard is in the same room.
 \end{frame}
 
 \begin{frame}{Game setup}
@@ -760,31 +767,19 @@ We now use the index to develop two types of heuristics, using the indices for s
 \
 \pause
 
-\begin{definition}[Benefit Heuristic(BH)]
-The benefit heuristic(BH) has a patroller currently in state $(\bm{s},\bm{v})$ look at all paths of length, $l$. They choose the path with the largest aggregate of indices collected along the path. The action is the first node in the path.
+\begin{definition}[Benefit Heuristic(BH($d$))]
+The benefit heuristic(BH) of depth, $d$, has a patroller currently in state $(\bm{s},\bm{v})$ look at all paths of length, $l=1,...,d$. For each length, $l$, they choose the path with the largest aggregate of indices collected along the path. Then out of the $d$ paths, they select one and take the action is the first node in the path.
 \end{definition}
 
 \
 \pause
 
-\begin{definition}[Penalty Heuristic(PH)]
-To develop a penalty heuristic(PH) based on the index, have a patroller currently in state $(\bm{s},\bm{v})$ look at all paths of length, $l$. They choose the path with the smallest aggregate of indices not collected along the path. The action is the first node in the path.
+\begin{definition}[Penalty Heuristic(PH($d$))]
+The penalty heuristic(PH) of depth, $d$, has a patroller currently in state $(\bm{s},\bm{v})$ look at all paths of length, $l=1,...,d$. For each length, $l$, they choose the path with the \textcolor{purple}{smallest aggregate of indices not collected along the path}. Then out of the $d$ paths, they select one and take the action is the first node in the path.
 \end{definition}
 
 \end{frame}
 
-\begin{frame}{Heuristic depth}
-If we are looking at all paths of length $l$, we might as well consider applying the heuristic to all paths of lengths, $1,...,l$. We call this the heuristic depth, $d=l$.
-
-\
-
-Once we apply our heuristic choice we are left with $d$ paths and therefore $d$ suggestions for the first action to take. To decide on which action to take, we look at the average cost the path incurs and from the state at the end of the path we look at the average cost to decay to the neglected state $(\bm{B+1},\bm{v})$.
-
-\
-
-We will call the depth heuristics, BH($d$) and PH($d$). We now perform numerical experiments, for 500 scenarios on $K_{4}$, using the PH($d$), as suggested by \cite{Lin2013} instead of BH($d$), to illustrate a problem with the current index.
-
-\end{frame}
 
 \begin{frame}{Numerical Experiments}
 
@@ -800,7 +795,7 @@ We will call the depth heuristics, BH($d$) and PH($d$). We now perform numerical
 \end{frame}
 
 \begin{frame}{An alternative index}
-We suggest a slight alteration, to uncap the index for, $s_{i}=B_{i}, v_{i} \geq v_{i,\text{max}}$. This means that the index prioritizes observations that are about to finish.
+The problem seems to be caused by the index not prioritizing the observables finishing, we suggest a slight alteratio. Uncapping the index in states where the local-observations are about to incur cost by finishing their attack.
 \begin{definition}[Alternative Plain Node Index]
 We define the index for node $i$, when the system is in state, $(\bm{s},\bm{v})$, to be
 \begin{align*}

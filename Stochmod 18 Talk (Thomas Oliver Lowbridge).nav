@@ -72,35 +72,33 @@
 \headcommand {\beamer@framepages {37}{37}}
 \headcommand {\slideentry {8}{0}{5}{38/38}{}{0}}
 \headcommand {\beamer@framepages {38}{38}}
-\headcommand {\slideentry {8}{0}{6}{39/39}{}{0}}
+\headcommand {\beamer@sectionpages {32}{38}}
+\headcommand {\beamer@subsectionpages {32}{38}}
+\headcommand {\sectionentry {9}{Future work}{39}{Future work}{0}}
+\headcommand {\slideentry {9}{0}{1}{39/39}{}{0}}
 \headcommand {\beamer@framepages {39}{39}}
-\headcommand {\beamer@sectionpages {32}{39}}
-\headcommand {\beamer@subsectionpages {32}{39}}
-\headcommand {\sectionentry {9}{Future work}{40}{Future work}{0}}
-\headcommand {\slideentry {9}{0}{1}{40/40}{}{0}}
+\headcommand {\beamer@sectionpages {39}{39}}
+\headcommand {\beamer@subsectionpages {39}{39}}
+\headcommand {\sectionentry {10}{\translate {References}}{40}{\translate {References}}{0}}
+\headcommand {\slideentry {10}{0}{0}{40/40}{}{0}}
 \headcommand {\beamer@framepages {40}{40}}
-\headcommand {\beamer@sectionpages {40}{40}}
-\headcommand {\beamer@subsectionpages {40}{40}}
-\headcommand {\sectionentry {10}{\translate {References}}{41}{\translate {References}}{0}}
-\headcommand {\slideentry {10}{0}{0}{41/41}{}{0}}
+\headcommand {\slideentry {10}{0}{1}{41/41}{}{0}}
 \headcommand {\beamer@framepages {41}{41}}
-\headcommand {\slideentry {10}{0}{1}{42/42}{}{0}}
+\headcommand {\beamer@sectionpages {39}{41}}
+\headcommand {\beamer@subsectionpages {39}{41}}
+\headcommand {\sectionentry {11}{Developing an optimal policy}{42}{Developing an optimal policy}{0}}
+\headcommand {\slideentry {11}{0}{1}{42/42}{}{0}}
 \headcommand {\beamer@framepages {42}{42}}
-\headcommand {\beamer@sectionpages {40}{42}}
-\headcommand {\beamer@subsectionpages {40}{42}}
-\headcommand {\sectionentry {11}{Developing an optimal policy}{43}{Developing an optimal policy}{0}}
-\headcommand {\slideentry {11}{0}{1}{43/43}{}{0}}
+\headcommand {\slideentry {11}{0}{2}{43/43}{}{0}}
 \headcommand {\beamer@framepages {43}{43}}
-\headcommand {\slideentry {11}{0}{2}{44/44}{}{0}}
+\headcommand {\slideentry {11}{0}{3}{44/44}{}{0}}
 \headcommand {\beamer@framepages {44}{44}}
-\headcommand {\slideentry {11}{0}{3}{45/45}{}{0}}
+\headcommand {\slideentry {11}{0}{4}{45/45}{}{0}}
 \headcommand {\beamer@framepages {45}{45}}
-\headcommand {\slideentry {11}{0}{4}{46/46}{}{0}}
+\headcommand {\slideentry {11}{0}{5}{46/46}{}{0}}
 \headcommand {\beamer@framepages {46}{46}}
-\headcommand {\slideentry {11}{0}{5}{47/47}{}{0}}
-\headcommand {\beamer@framepages {47}{47}}
-\headcommand {\beamer@partpages {1}{47}}
-\headcommand {\beamer@subsectionpages {43}{47}}
-\headcommand {\beamer@sectionpages {43}{47}}
-\headcommand {\beamer@documentpages {47}}
-\headcommand {\gdef \inserttotalframenumber {28}}
+\headcommand {\beamer@partpages {1}{46}}
+\headcommand {\beamer@subsectionpages {42}{46}}
+\headcommand {\beamer@sectionpages {42}{46}}
+\headcommand {\beamer@documentpages {46}}
+\headcommand {\gdef \inserttotalframenumber {27}}
