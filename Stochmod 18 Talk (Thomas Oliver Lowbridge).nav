@@ -77,28 +77,23 @@
 \headcommand {\sectionentry {9}{Future work}{39}{Future work}{0}}
 \headcommand {\slideentry {9}{0}{1}{39/39}{}{0}}
 \headcommand {\beamer@framepages {39}{39}}
-\headcommand {\beamer@sectionpages {39}{39}}
-\headcommand {\beamer@subsectionpages {39}{39}}
-\headcommand {\sectionentry {10}{\translate {References}}{40}{\translate {References}}{0}}
-\headcommand {\slideentry {10}{0}{0}{40/40}{}{0}}
+\headcommand {\slideentry {9}{0}{2}{40/40}{}{0}}
 \headcommand {\beamer@framepages {40}{40}}
+\headcommand {\beamer@sectionpages {39}{40}}
+\headcommand {\beamer@subsectionpages {39}{40}}
+\headcommand {\sectionentry {10}{Developing an optimal policy}{41}{Developing an optimal policy}{0}}
 \headcommand {\slideentry {10}{0}{1}{41/41}{}{0}}
 \headcommand {\beamer@framepages {41}{41}}
-\headcommand {\beamer@sectionpages {39}{41}}
-\headcommand {\beamer@subsectionpages {39}{41}}
-\headcommand {\sectionentry {11}{Developing an optimal policy}{42}{Developing an optimal policy}{0}}
-\headcommand {\slideentry {11}{0}{1}{42/42}{}{0}}
+\headcommand {\slideentry {10}{0}{2}{42/42}{}{0}}
 \headcommand {\beamer@framepages {42}{42}}
-\headcommand {\slideentry {11}{0}{2}{43/43}{}{0}}
+\headcommand {\slideentry {10}{0}{3}{43/43}{}{0}}
 \headcommand {\beamer@framepages {43}{43}}
-\headcommand {\slideentry {11}{0}{3}{44/44}{}{0}}
+\headcommand {\slideentry {10}{0}{4}{44/44}{}{0}}
 \headcommand {\beamer@framepages {44}{44}}
-\headcommand {\slideentry {11}{0}{4}{45/45}{}{0}}
+\headcommand {\slideentry {10}{0}{5}{45/45}{}{0}}
 \headcommand {\beamer@framepages {45}{45}}
-\headcommand {\slideentry {11}{0}{5}{46/46}{}{0}}
-\headcommand {\beamer@framepages {46}{46}}
-\headcommand {\beamer@partpages {1}{46}}
-\headcommand {\beamer@subsectionpages {42}{46}}
-\headcommand {\beamer@sectionpages {42}{46}}
-\headcommand {\beamer@documentpages {46}}
-\headcommand {\gdef \inserttotalframenumber {27}}
+\headcommand {\beamer@partpages {1}{45}}
+\headcommand {\beamer@subsectionpages {41}{45}}
+\headcommand {\beamer@sectionpages {41}{45}}
+\headcommand {\beamer@documentpages {45}}
+\headcommand {\gdef \inserttotalframenumber {26}}
