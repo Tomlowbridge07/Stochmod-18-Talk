@@ -125,11 +125,6 @@ cross/.default={1pt}}
 \item Markov Decision Process(MDP) formulation
 \end{itemize}
 \item Problem relaxation
-\begin{itemize}
-\item Multi-node relaxation
-\item Total-rate constraint
-\item Lagrangian relaxation
-\end{itemize}
 \item Single node problem
 \begin{itemize}
 \item Developing a threshold policy
@@ -496,54 +491,54 @@ Where $\phi^{k}_{\pi}(\bm{s}_{0},\bm{v}_{0})$ is the state after $k$ transitions
 
 \end{frame}
 
-\section{Multi-node relaxation}
-\begin{frame}{Multiple node relaxation}
-We now relax the problem to that of a patroller who can visit multiple nodes in the next time period.
-
-We will call this Problem the \textcolor{purple}{multiple-node(MN)} problem. We extend the class of polcies to 
-
-\begin{align*}
-\Pi^{\text{MN}}= \{\pi \,  | \, \pi : \Omega \rightarrow \{\textcolor{purple}{\bm{\alpha}} \, | \, \alpha_{i} \in \{0,1 \} \text{ for } i=1,...,n \}   \}
-\end{align*}
-
-Where \textcolor{purple}{$\alpha_{i}=1$ if the patroller will visit} node $i$ in the next time period and \textcolor{purple}{$\alpha_{i}=0$ if the patroller will not visit node $i$} in the next time period.
-Note. $\Pi \subset \Pi^{\text{MN}}$. Similar to $C^{\text{OPT}}$ we define $C^{\text{MN}}$ just with this larger class of policies.
-\end{frame}
-
-\section{Total-rate constraint}
-\begin{frame}{Total-rate constraint}
-\begin{definition}[Long-run visit rate]
-Define the long-run rate of visits to node $i$, starting at $(\bm{s}_{0},\bm{v}_{0})$ under policy $\pi$ by
-\begin{align*}
-\mu_{i}(\pi,\bm{s}_{0},\bm{v}_{0})=\lim\limits_{N \rightarrow \infty} \frac{1}{N} \sum\limits_{k=0}^{N-1} \alpha_{\phi_{\pi}^{k}(\bm{s}_{0},\bm{v}_{0}),i}
-\end{align*}
-\end{definition}
-\pause
-We now impose the \textcolor{purple}{total-rate} constraint, that is the long-run overall visit rate to all nodes is no greater than 1. and restrict the MN problem by this to get the total-rate(TR) problem and its class of policies
-
-\begin{align*}
-\Pi^{\text{TR}}=\left\{ \pi \in \Pi^{\text{MN}} \, \bigg| \, \textcolor{purple}{\sum\limits_{i=1}^{n} \mu_{i}(\pi,\bm{s}_{0},\bm{v}_{0}) \leq 1} \quad \forall (\bm{s}_{0},\bm{v}_{0}) \in \Omega \right\}
-\end{align*}
-
-Again $\Pi \subset \Pi^{\text{TR}}$ and we define $C^{\text{TR}}$ similar to $C^{\text{OPT}}$ just on this larger class of policies.
-\end{frame}
-
-\section{Lagrangian relaxation}
-\begin{frame}{Lagrangian relaxation}
-We now relax the problem again by incorporating the total rate constraint into the objective function, with a Lagrange multiplier, $\omega \geq 0$. This forms
-
-\begin{align*}
-C(\omega)&=\min_{\pi \in \Pi^{\text{MN}}} \left\{ \sum\limits_{i=1}^{n} V_{i}(\pi) + \omega \left( \sum\limits_{i=0}^{n} \mu_{i}(\pi) -1 \right) \right\} \\
-&=\min_{\pi \in \Pi^{\text{MN}}} \sum\limits_{i=1}^{n} (V_{i}(\pi)+\omega \mu_{i}(\pi)) - \omega
-\end{align*}
-
-By incorporating the total-rate constraint as a Lagrange multiplier we can drop the constraint, so that the patroller can choose to visit any number of nodes in each time period (each costing $\omega$).
-
-\
-\pause
-
-We can show that, \textcolor{purple}{$C^{\text{OPT}} \geq C^{\text{TR}} \geq C(\omega)$}.
-\end{frame}
+%\section{Multi-node relaxation}
+%\begin{frame}{Multiple node relaxation}
+%We now relax the problem to that of a patroller who can visit multiple nodes in the next time period.
+%
+%We will call this Problem the \textcolor{purple}{multiple-node(MN)} problem. We extend the class of polcies to 
+%
+%\begin{align*}
+%\Pi^{\text{MN}}= \{\pi \,  | \, \pi : \Omega \rightarrow \{\textcolor{purple}{\bm{\alpha}} \, | \, \alpha_{i} \in \{0,1 \} \text{ for } i=1,...,n \}   \}
+%\end{align*}
+%
+%Where \textcolor{purple}{$\alpha_{i}=1$ if the patroller will visit} node $i$ in the next time period and \textcolor{purple}{$\alpha_{i}=0$ if the patroller will not visit node $i$} in the next time period.
+%Note. $\Pi \subset \Pi^{\text{MN}}$. Similar to $C^{\text{OPT}}$ we define $C^{\text{MN}}$ just with this larger class of policies.
+%\end{frame}
+%
+%\section{Total-rate constraint}
+%\begin{frame}{Total-rate constraint}
+%\begin{definition}[Long-run visit rate]
+%Define the long-run rate of visits to node $i$, starting at $(\bm{s}_{0},\bm{v}_{0})$ under policy $\pi$ by
+%\begin{align*}
+%\mu_{i}(\pi,\bm{s}_{0},\bm{v}_{0})=\lim\limits_{N \rightarrow \infty} \frac{1}{N} \sum\limits_{k=0}^{N-1} \alpha_{\phi_{\pi}^{k}(\bm{s}_{0},\bm{v}_{0}),i}
+%\end{align*}
+%\end{definition}
+%\pause
+%We now impose the \textcolor{purple}{total-rate} constraint, that is the long-run overall visit rate to all nodes is no greater than 1. and restrict the MN problem by this to get the total-rate(TR) problem and its class of policies
+%
+%\begin{align*}
+%\Pi^{\text{TR}}=\left\{ \pi \in \Pi^{\text{MN}} \, \bigg| \, \textcolor{purple}{\sum\limits_{i=1}^{n} \mu_{i}(\pi,\bm{s}_{0},\bm{v}_{0}) \leq 1} \quad \forall (\bm{s}_{0},\bm{v}_{0}) \in \Omega \right\}
+%\end{align*}
+%
+%Again $\Pi \subset \Pi^{\text{TR}}$ and we define $C^{\text{TR}}$ similar to $C^{\text{OPT}}$ just on this larger class of policies.
+%\end{frame}
+%
+%\section{Lagrangian relaxation}
+%\begin{frame}{Lagrangian relaxation}
+%We now relax the problem again by incorporating the total rate constraint into the objective function, with a Lagrange multiplier, $\omega \geq 0$. This forms
+%
+%\begin{align*}
+%C(\omega)&=\min_{\pi \in \Pi^{\text{MN}}} \left\{ \sum\limits_{i=1}^{n} V_{i}(\pi) + \omega \left( \sum\limits_{i=0}^{n} \mu_{i}(\pi) -1 \right) \right\} \\
+%&=\min_{\pi \in \Pi^{\text{MN}}} \sum\limits_{i=1}^{n} (V_{i}(\pi)+\omega \mu_{i}(\pi)) - \omega
+%\end{align*}
+%
+%By incorporating the total-rate constraint as a Lagrange multiplier we can drop the constraint, so that the patroller can choose to visit any number of nodes in each time period (each costing $\omega$).
+%
+%\
+%\pause
+%
+%We can show that, \textcolor{purple}{$C^{\text{OPT}} \geq C^{\text{TR}} \geq C(\omega)$}.
+%\end{frame}
 
 %\begin{frame}{Linking reduced problems}
 %We have that for any $\omega \geq 0$
@@ -560,9 +555,24 @@ We can show that, \textcolor{purple}{$C^{\text{OPT}} \geq C^{\text{TR}} \geq C(\
 %Hence we have a string of inequalities $C^{\text{OPT}} \geq C^{\text{TR}} \geq C(\omega)$.
 %\end{frame}
 
+\begin{frame}{Relaxation}
+We can use the standard approach of relaxing the problem to have an unconstrained patroller, who can visit multiple nodes at one time period.
+
+\
+\pause
+\
+
+However we can constraint the patroller by forcing a long-run visit rate of at most 1. We can use this and a lagrangian multiplier, $\omega \geq 0$ to form the relaxed problem.
+
+\begin{align*}
+C(\omega)&=\min_{\pi \in \Pi^{\text{MN}}} \left\{ \sum\limits_{i=1}^{n} V_{i}(\pi) + \omega \left( \sum\limits_{i=0}^{n} \mu_{i}(\pi) -1 \right) \right\} \\
+%&=\min_{\pi \in \Pi^{\text{MN}}} \sum\limits_{i=1}^{n} (V_{i}(\pi)+\omega \mu_{i}(\pi)) - \omega
+\end{align*}
+\end{frame}
+
 \section{Single node problem}
 \begin{frame}{Single node problem}
-We now want to find $C(\omega)=\min\limits_{\pi \in \Pi^{\text{MN}}} \sum\limits_{i=1}^{n} (V_{i}(\pi)+\omega \mu_{i}(\pi)) - \omega$. This problem, as we are in the multi-node class, can be rewrote as
+We now want to find $C(\omega)=\min\limits_{\pi \in \Pi^{\text{MN}}} \sum\limits_{i=1}^{n} (V_{i}(\pi)+\omega \mu_{i}(\pi)) - \omega$. This problem, as we are in the unconstrained class, can be rewrote as
 
 \begin{align*}
 C(\omega)=\sum\limits_{i=1}^{n} \left(\min\limits_{\pi \in \Pi^{\text{MN}}} \left(V_{i}(\pi)+\omega \mu_{i}(\pi)\right)\right) - \omega
